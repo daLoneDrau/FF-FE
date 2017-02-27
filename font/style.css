@@ -1,0 +1,372 @@
+@font-face {
+  font-family: 'icomoon';
+  src:  url('fonts/icomoon.eot?nyboax');
+  src:  url('fonts/icomoon.eot?nyboax#iefix') format('embedded-opentype'),
+    url('fonts/icomoon.ttf?nyboax') format('truetype'),
+    url('fonts/icomoon.woff?nyboax') format('woff'),
+    url('fonts/icomoon.svg?nyboax#icomoon') format('svg');
+  font-weight: normal;
+  font-style: normal;
+}
+
+[class^="icon-"], [class*=" icon-"] {
+  /* use !important to prevent issues with browser extensions that change fonts */
+  font-family: 'icomoon' !important;
+  speak: none;
+  font-style: normal;
+  font-weight: normal;
+  font-variant: normal;
+  text-transform: none;
+  line-height: 1;
+
+  /* Better Font Rendering =========== */
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.icon-ancient-ruins:before {
+  content: "\e900";
+}
+.icon-arabic-door:before {
+  content: "\e901";
+}
+.icon-armor-vest:before {
+  content: "\e902";
+}
+.icon-barbarian:before {
+  content: "\e903";
+}
+.icon-barn:before {
+  content: "\e904";
+}
+.icon-barracks:before {
+  content: "\e905";
+}
+.icon-barracks-tent:before {
+  content: "\e906";
+}
+.icon-biceps:before {
+  content: "\e907";
+}
+.icon-black-knight-helm:before {
+  content: "\e908";
+}
+.icon-block-house:before {
+  content: "\e909";
+}
+.icon-body-balance:before {
+  content: "\e90a";
+}
+.icon-boots:before {
+  content: "\e90b";
+}
+.icon-bow-arrow:before {
+  content: "\e90c";
+}
+.icon-bracer:before {
+  content: "\e90d";
+}
+.icon-brain:before {
+  content: "\e90e";
+}
+.icon-breastplate:before {
+  content: "\e90f";
+}
+.icon-brick-wall:before {
+  content: "\e910";
+}
+.icon-bridge:before {
+  content: "\e911";
+}
+.icon-broadsword:before {
+  content: "\e912";
+}
+.icon-cactus:before {
+  content: "\e913";
+}
+.icon-campfire:before {
+  content: "\e914";
+}
+.icon-camping-tent:before {
+  content: "\e915";
+}
+.icon-capitol:before {
+  content: "\e916";
+}
+.icon-castle:before {
+  content: "\e917";
+}
+.icon-castle-ruins:before {
+  content: "\e918";
+}
+.icon-cave-entrance:before {
+  content: "\e919";
+}
+.icon-chain-mail:before {
+  content: "\e91a";
+}
+.icon-checked-shield:before {
+  content: "\e91b";
+}
+.icon-church:before {
+  content: "\e91c";
+}
+.icon-closed-doors:before {
+  content: "\e91d";
+}
+.icon-crested-helmet:before {
+  content: "\e91e";
+}
+.icon-crossbow:before {
+  content: "\e91f";
+}
+.icon-defensive-wall:before {
+  content: "\e920";
+}
+.icon-dwarf-face:before {
+  content: "\e921";
+}
+.icon-fat:before {
+  content: "\e922";
+}
+.icon-fire-axe:before {
+  content: "\e923";
+}
+.icon-floor-hatch:before {
+  content: "\e924";
+}
+.icon-forest:before {
+  content: "\e925";
+}
+.icon-gate:before {
+  content: "\e926";
+}
+.icon-gauntlet:before {
+  content: "\e927";
+}
+.icon-giant:before {
+  content: "\e928";
+}
+.icon-gladius:before {
+  content: "\e929";
+}
+.icon-gloves:before {
+  content: "\e92a";
+}
+.icon-goblin-camp:before {
+  content: "\e92b";
+}
+.icon-gold-mine:before {
+  content: "\e92c";
+}
+.icon-grass:before {
+  content: "\e92d";
+}
+.icon-greaves:before {
+  content: "\e92e";
+}
+.icon-greek-temple:before {
+  content: "\e92f";
+}
+.icon-health-normal:before {
+  content: "\e930";
+}
+.icon-heart-inside:before {
+  content: "\e931";
+}
+.icon-hill-fort:before {
+  content: "\e932";
+}
+.icon-hills:before {
+  content: "\e933";
+}
+.icon-hood:before {
+  content: "\e934";
+}
+.icon-indian-palace:before {
+  content: "\e935";
+}
+.icon-island:before {
+  content: "\e936";
+}
+.icon-katana:before {
+  content: "\e937";
+}
+.icon-ladder:before {
+  content: "\e938";
+}
+.icon-lamellar:before {
+  content: "\e939";
+}
+.icon-leg-armor:before {
+  content: "\e93a";
+}
+.icon-lock-picking:before {
+  content: "\e93b";
+}
+.icon-magic-gate:before {
+  content: "\e93c";
+}
+.icon-magic-portal:before {
+  content: "\e93d";
+}
+.icon-mail-shirt:before {
+  content: "\e93e";
+}
+.icon-medieval-gate:before {
+  content: "\e93f";
+}
+.icon-medieval-pavilion:before {
+  content: "\e940";
+}
+.icon-monk-face:before {
+  content: "\e941";
+}
+.icon-mountain-cave:before {
+  content: "\e942";
+}
+.icon-mounted-knight:before {
+  content: "\e943";
+}
+.icon-muscular-torso:before {
+  content: "\e944";
+}
+.icon-obelisk:before {
+  content: "\e945";
+}
+.icon-orc-head:before {
+  content: "\e946";
+}
+.icon-palisade:before {
+  content: "\e947";
+}
+.icon-path-tile:before {
+  content: "\e948";
+}
+.icon-peaks:before {
+  content: "\e949";
+}
+.icon-pikeman:before {
+  content: "\e94a";
+}
+.icon-plain-dagger:before {
+  content: "\e94b";
+}
+.icon-portculis:before {
+  content: "\e94c";
+}
+.icon-rogue:before {
+  content: "\e94d";
+}
+.icon-round-shield:before {
+  content: "\e94e";
+}
+.icon-sai:before {
+  content: "\e94f";
+}
+.icon-sand-castle:before {
+  content: "\e950";
+}
+.icon-scale-mail:before {
+  content: "\e951";
+}
+.icon-sea-dragon:before {
+  content: "\e952";
+}
+.icon-secret-door:before {
+  content: "\e953";
+}
+.icon-sharp-axe:before {
+  content: "\e954";
+}
+.icon-spartan:before {
+  content: "\e955";
+}
+.icon-spider-web:before {
+  content: "\e956";
+}
+.icon-spiky-pit:before {
+  content: "\e957";
+}
+.icon-squid:before {
+  content: "\e958";
+}
+.icon-stairs:before {
+  content: "\e959";
+}
+.icon-stone-pile:before {
+  content: "\e95a";
+}
+.icon-stone-tower:before {
+  content: "\e95b";
+}
+.icon-strong:before {
+  content: "\e95c";
+}
+.icon-swamp:before {
+  content: "\e95d";
+}
+.icon-swordman:before {
+  content: "\e95e";
+}
+.icon-swordwoman:before {
+  content: "\e95f";
+}
+.icon-troll:before {
+  content: "\e960";
+}
+.icon-tumulus:before {
+  content: "\e961";
+}
+.icon-two-handed-sword:before {
+  content: "\e962";
+}
+.icon-viking-church:before {
+  content: "\e963";
+}
+.icon-viking-head:before {
+  content: "\e964";
+}
+.icon-viking-longhouse:before {
+  content: "\e965";
+}
+.icon-village:before {
+  content: "\e966";
+}
+.icon-visored-helm:before {
+  content: "\e967";
+}
+.icon-war-axe:before {
+  content: "\e968";
+}
+.icon-weight-lifting-up:before {
+  content: "\e969";
+}
+.icon-well:before {
+  content: "\e96a";
+}
+.icon-white-tower:before {
+  content: "\e96b";
+}
+.icon-witch-face:before {
+  content: "\e96c";
+}
+.icon-wizard-face:before {
+  content: "\e96d";
+}
+.icon-wizard-staff:before {
+  content: "\e96e";
+}
+.icon-wolf-head:before {
+  content: "\e96f";
+}
+.icon-woman-elf-face:before {
+  content: "\e970";
+}
+.icon-wooden-door:before {
+  content: "\e971";
+}
+.icon-wyvern:before {
+  content: "\e972";
+}
+
