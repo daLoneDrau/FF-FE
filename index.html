@@ -1,0 +1,81 @@
+<!doctype html>
+
+
+<html ng-app="restApp" lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FFWOFM</title>
+    <!-- load angular -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.6.1/angular.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.6.1/angular-route.min.js"></script>
+    <!-- load application -->
+    <script type="text/javascript" src="./Scripts/lib/app.js"></script>
+    <!-- load templates -->
+    <script type="text/javascript" src="./templates/main.template.js"></script>
+    <script type="text/javascript" src="./templates/nav.template.js"></script>
+    <script type="text/javascript" src="./templates/character.template.js"></script>
+    <script type="text/javascript" src="./templates/weapon.template.js"></script>
+    <script type="text/javascript" src="./templates/horse.template.js"></script>
+    <script type="text/javascript" src="./templates/armor.template.js"></script>
+    <script type="text/javascript" src="./templates/native_by_type.template.js"></script>
+    <script type="text/javascript" src="./templates/native_by_combat.template.js"></script>
+    <script type="text/javascript" src="./templates/monster.template.js"></script>
+    <script type="text/javascript" src="./templates/tile.template.js"></script>
+    <!-- load controllers -->
+    <script type="text/javascript" src="./scripts/Controllers/game.controller.js"></script>
+    <!-- load services -->
+    <script type="text/javascript" src="./Scripts/lib/services.js"></script>
+    <!-- load custom library -->
+    <script type="text/javascript" src="./Scripts/lib/com/dalonedrow/rpgbase/enums/MagicRealmEnums.js"></script>
+    <script type="text/javascript" src="./Scripts/lib/com/dalonedrow/rpgbase/Hashcode.js"></script>
+    <!-- load rpg library -->
+    <script type="text/javascript" src="./scripts/lib/com/dalonedrow/engine/sprite/base/Hashcode.js"></script>
+    <script type="text/javascript" src="./scripts/lib/com/dalonedrow/engine/sprite/base/SimpleVector2.js"></script>
+    <script type="text/javascript" src="./scripts/lib/com/dalonedrow/engine/systems/base/Interactive.js"></script>
+    <script type="text/javascript" src="./scripts/lib/com/dalonedrow/rpg/base/constants/IoGlobals.js"></script>
+    <script type="text/javascript" src="./scripts/lib/com/dalonedrow/module/ff/systems/FFInteractive.js"></script>
+    <!-- load graph library -->
+    <script type="text/javascript" src="./Scripts/lib/com/dalonedrow/rpgbase/graph/SimpleVector2.js"></script>
+    <script type="text/javascript" src="./Scripts/lib/com/dalonedrow/rpgbase/graph/SimpleVector3.js"></script>
+    <script type="text/javascript" src="./Scripts/lib/com/dalonedrow/rpgbase/graph/GraphEdge.js"></script>
+    <script type="text/javascript" src="./Scripts/lib/com/dalonedrow/rpgbase/graph/WeightedGraphEdge.js"></script>
+    <script type="text/javascript" src="./Scripts/lib/com/dalonedrow/rpgbase/graph/GraphNode.js"></script>
+    <script type="text/javascript" src="./Scripts/lib/com/dalonedrow/rpgbase/graph/TwoDimensional.js"></script>
+    <script type="text/javascript" src="./Scripts/lib/com/dalonedrow/rpgbase/graph/PhysicalGraphNode.js"></script>
+    <script type="text/javascript" src="./Scripts/lib/com/dalonedrow/rpgbase/graph/EdgeWeightedUndirectedGraph.js"></script>
+    <!-- load Hexagon library -->
+    <script type="text/javascript" src="./Scripts/lib/com/dalonedrow/rpgbase/hexagon/HexCoordinateSystem.js"></script>
+    <script type="text/javascript" src="./Scripts/lib/com/dalonedrow/rpgbase/hexagon/Hexagon.js"></script>
+    <script type="text/javascript" src="./Scripts/lib/com/dalonedrow/rpgbase/hexagon/CompoundHexagon.js"></script>
+    <!-- load avalon library -->
+    <script type="text/javascript" src="./Scripts/lib/com/dalonedrow/rpgbase/avalon/TerrainHexagon.js"></script>
+    <script type="text/javascript" src="./Scripts/lib/com/dalonedrow/rpgbase/avalon/HexTile.js"></script>
+    <script type="text/javascript" src="./Scripts/lib/com/dalonedrow/rpgbase/avalon/TileClearing.js"></script>
+    <script type="text/javascript" src="./Scripts/lib/com/dalonedrow/rpgbase/avalon/MagicRealmGraph.js"></script>
+    <script type="text/javascript" src="./Scripts/lib/com/dalonedrow/rpgbase/avalon/MagicRealmMap.js"></script>
+    <script type="text/javascript" src="./Scripts/lib/com/dalonedrow/rpgbase/avalon/HexSetupUtility.js"></script>
+    <script type="text/javascript" src="./Scripts/lib/com/dalonedrow/rpgbase/avalon/AsciiUtility.js"></script>
+    <!-- link to bootstrap 1st.  minified is for production -->
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
+    <!-- links to custom styles go here -->
+    <link href="./Content/styles.css" rel="stylesheet">
+    <link href="./Content/style.css" rel="stylesheet"> <!-- glyph icons -->
+    <style>
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="starter-template">
+            <h1>Intro</h1>
+            <p class="lead">blah blah intro blah</p> <!-- lead class will make fonts bigger and centered-->
+        </div>
+        <div class="row visible-lg visible-md"> <!-- row will only visible when screen is large or medium -->
+            IMAGE ROW
+        </div>
+        <section class="row">
+            <div ng-view></div>
+        </section>
+    </div>
+</body>
+</html>
