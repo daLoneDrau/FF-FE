@@ -26,36 +26,27 @@
     <script type="text/javascript" src="./scripts/Controllers/game.controller.js"></script>
     <!-- load services -->
     <script type="text/javascript" src="./Scripts/lib/services.js"></script>
-    <!-- load custom library -->
-    <script type="text/javascript" src="./Scripts/lib/com/dalonedrow/rpgbase/enums/MagicRealmEnums.js"></script>
-    <script type="text/javascript" src="./Scripts/lib/com/dalonedrow/rpgbase/Hashcode.js"></script>
-    <!-- load rpg library -->
+    <!-- load rpg base library -->
     <script type="text/javascript" src="./scripts/lib/com/dalonedrow/engine/sprite/base/Hashcode.js"></script>
     <script type="text/javascript" src="./scripts/lib/com/dalonedrow/engine/sprite/base/SimpleVector2.js"></script>
     <script type="text/javascript" src="./scripts/lib/com/dalonedrow/engine/systems/base/Interactive.js"></script>
+    <script type="text/javascript" src="./scripts/lib/com/dalonedrow/engine/systems/base/ProjectConstants.js"></script>
     <script type="text/javascript" src="./scripts/lib/com/dalonedrow/rpg/base/constants/IoGlobals.js"></script>
+    <script type="text/javascript" src="./scripts/lib/com/dalonedrow/rpg/base/flyweights/BaseInteractiveObject.js"></script>
+    <script type="text/javascript" src="./scripts/lib/com/dalonedrow/rpg/base/flyweights/InventoryData.js"></script>
+    <script type="text/javascript" src="./scripts/lib/com/dalonedrow/rpg/base/flyweights/InventorySlot.js"></script>
+    <script type="text/javascript" src="./scripts/lib/com/dalonedrow/rpg/base/flyweights/IOCharacter.js"></script>
+    <script type="text/javascript" src="./scripts/lib/com/dalonedrow/rpg/base/flyweights/IOItemData.js"></script>
+    <script type="text/javascript" src="./scripts/lib/com/dalonedrow/rpg/base/flyweights/IOSpellCastData.js"></script>
+    <script type="text/javascript" src="./scripts/lib/com/dalonedrow/rpg/base/systems/Script.js"></script>
+    <script type="text/javascript" src="./scripts/lib/com/dalonedrow/utils/Watchable.js"></script>
+    <!-- load rpg module library -->
+    <script type="text/javascript" src="./scripts/lib/com/dalonedrow/module/ff/constants/FFEquipmentSlots.js"></script>
+    <script type="text/javascript" src="./scripts/lib/com/dalonedrow/module/ff/rpg/FFInteractiveObject.js"></script>
+    <script type="text/javascript" src="./scripts/lib/com/dalonedrow/module/ff/rpg/FFInventory.js"></script>
+    <script type="text/javascript" src="./scripts/lib/com/dalonedrow/module/ff/systems/FFController.js"></script>
     <script type="text/javascript" src="./scripts/lib/com/dalonedrow/module/ff/systems/FFInteractive.js"></script>
-    <!-- load graph library -->
-    <script type="text/javascript" src="./Scripts/lib/com/dalonedrow/rpgbase/graph/SimpleVector2.js"></script>
-    <script type="text/javascript" src="./Scripts/lib/com/dalonedrow/rpgbase/graph/SimpleVector3.js"></script>
-    <script type="text/javascript" src="./Scripts/lib/com/dalonedrow/rpgbase/graph/GraphEdge.js"></script>
-    <script type="text/javascript" src="./Scripts/lib/com/dalonedrow/rpgbase/graph/WeightedGraphEdge.js"></script>
-    <script type="text/javascript" src="./Scripts/lib/com/dalonedrow/rpgbase/graph/GraphNode.js"></script>
-    <script type="text/javascript" src="./Scripts/lib/com/dalonedrow/rpgbase/graph/TwoDimensional.js"></script>
-    <script type="text/javascript" src="./Scripts/lib/com/dalonedrow/rpgbase/graph/PhysicalGraphNode.js"></script>
-    <script type="text/javascript" src="./Scripts/lib/com/dalonedrow/rpgbase/graph/EdgeWeightedUndirectedGraph.js"></script>
-    <!-- load Hexagon library -->
-    <script type="text/javascript" src="./Scripts/lib/com/dalonedrow/rpgbase/hexagon/HexCoordinateSystem.js"></script>
-    <script type="text/javascript" src="./Scripts/lib/com/dalonedrow/rpgbase/hexagon/Hexagon.js"></script>
-    <script type="text/javascript" src="./Scripts/lib/com/dalonedrow/rpgbase/hexagon/CompoundHexagon.js"></script>
-    <!-- load avalon library -->
-    <script type="text/javascript" src="./Scripts/lib/com/dalonedrow/rpgbase/avalon/TerrainHexagon.js"></script>
-    <script type="text/javascript" src="./Scripts/lib/com/dalonedrow/rpgbase/avalon/HexTile.js"></script>
-    <script type="text/javascript" src="./Scripts/lib/com/dalonedrow/rpgbase/avalon/TileClearing.js"></script>
-    <script type="text/javascript" src="./Scripts/lib/com/dalonedrow/rpgbase/avalon/MagicRealmGraph.js"></script>
-    <script type="text/javascript" src="./Scripts/lib/com/dalonedrow/rpgbase/avalon/MagicRealmMap.js"></script>
-    <script type="text/javascript" src="./Scripts/lib/com/dalonedrow/rpgbase/avalon/HexSetupUtility.js"></script>
-    <script type="text/javascript" src="./Scripts/lib/com/dalonedrow/rpgbase/avalon/AsciiUtility.js"></script>
+    <script type="text/javascript" src="./scripts/lib/com/dalonedrow/module/ff/systems/FFScript.js"></script>
     <!-- link to bootstrap 1st.  minified is for production -->
     <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
     <!-- links to custom styles go here -->

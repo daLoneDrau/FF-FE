@@ -7,7 +7,10 @@
  * @author DaLoneDrow
  */
 function SimpleVector2() {
-    Hashcode.call(this);
+	Hashcode.call(this);
+	/**
+	 * private members
+	 */
 	/** the x-coordinate. */
 	var x;
 	/** the y-coordinate. */
@@ -37,6 +40,9 @@ function SimpleVector2() {
 	        "Invalid number of arguments, must be 1 vector to set, or 2 numbers");
 		}
 	};
+	/**
+	 * Constructor.
+	 */
 	if (arguments.length === 0) {
 		x = 0;
 		y = 0;
@@ -219,3 +225,4 @@ function SimpleVector2() {
 		return [ "SimpleVector2[x=", x, ", y=", y, "]" ].join("");
 	};
 }
+SimpleVector2.prototype = Object.create(Hashcode.prototype);

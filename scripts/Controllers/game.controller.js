@@ -4,6 +4,7 @@
 
 // scope syntax, not controller-as
 angular.module('restApp').controller('GameController', function($scope, $window,
+		equipmentSlotService,
 		/*basicAttributeService, basicElementService,*/ $q, $http) {
     $scope.newEntity = {
         name: "",
@@ -168,7 +169,36 @@ angular.module('restApp').controller('GameController', function($scope, $window,
             }
         });
     };
+    var loadEquipmentSlots = function() {        
+        var promise = equipmentSlotService.getEntities();
+        promise.then(function(response) {
+            console.log("GET::");
+            console.log(response);
+            if (response.status === 200) {
+                var list = response.data;
+                for (var i = list.length - 1; i >= 0; i--) {
+                    if (angular.isUndefined(list[i].id)) {
+                    	list[i].id = 0;
+                    }
+                    if (angular.isUndefined(list[i].value)) {
+                    	list[i].value = 0;
+                    }
+                    FFEquipmentSlots.values.push(new FFEquipmentSlots(list[i].name, list[i].value));
+                }
+                init();
+            }
+        });
+    };
+    var init = function() {
+        var o = new FFController();
+        ProjectConstants.setInstance(o);
+        o = new FFInteractive();
+        Interactive.setInstance(o);
+        o = new FFScript();
+        Script.setInstance(o);
+        console.log(Interactive.getInstance().getMaxIORefId());
+        console.log(ProjectConstants.getInstance().getConsoleWidth());
+    }
     //getAllEntities();
-    //var ff = new Interactive();
-    console.log(Interactive.getInstance());
+    loadEquipmentSlots();
 });

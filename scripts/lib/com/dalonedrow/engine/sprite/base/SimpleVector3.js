@@ -260,3 +260,5 @@ function SimpleVector3() {
 		return ["[x=", x, ", y=", y, ", z=", z, "]" ].join("");
 	};
 }
+SimpleVector3.prototype = Object.create(Hashcode.prototype);
+
