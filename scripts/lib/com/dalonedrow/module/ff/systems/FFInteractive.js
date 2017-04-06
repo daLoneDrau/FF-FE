@@ -1,5 +1,6 @@
 function FFInteractive() {
 	Interactive.call(this);
+	var self = this;
     /** the next available id. */
     var nextId = 0;
     this.addAnimation = function(id, animId) {
@@ -61,7 +62,7 @@ function FFInteractive() {
         // JOGLErrorHandler.getInstance().fatalError(e);
         // }
         // step 2 - find the next available index in the objs array
-        var index = -1, objs = this.getIOs();
+        var index = -1, objs = self.getIOs();
         for (var i = objs.length - 1; i >= 0; i--) {
             if (objs[i] === null) {
                 index = i;

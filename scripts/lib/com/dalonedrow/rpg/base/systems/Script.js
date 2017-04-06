@@ -47,7 +47,7 @@ function Script() {
                             this.sendIOScriptEvent(io, 0, null, io.getMainevent());
                         } else {
                             this.sendIOScriptEvent(
-                                    io, ScriptConstants.SM_008_MAIN, null, null);
+                                    io, ScriptGlobals.SM_008_MAIN, null, null);
                         }
                     }
                 }
@@ -109,65 +109,65 @@ function Script() {
     	var disallowed = false;
         // check to see if message is for an event that was disabled
         switch (msg) {
-        case ScriptConstants.SM_055_COLLIDE_NPC:
-            if (script.hasAllowedEvent(ScriptConstants.DISABLE_COLLIDE_NPC)) {
+        case ScriptGlobals.SM_055_COLLIDE_NPC:
+            if (script.hasAllowedEvent(ScriptGlobals.DISABLE_COLLIDE_NPC)) {
                 disallowed = true;
             }
             break;
-        case ScriptConstants.SM_010_CHAT:
-            if (script.hasAllowedEvent(ScriptConstants.DISABLE_CHAT)) {
+        case ScriptGlobals.SM_010_CHAT:
+            if (script.hasAllowedEvent(ScriptGlobals.DISABLE_CHAT)) {
                 disallowed = true;
             }
             break;
-        case ScriptConstants.SM_016_HIT:
-            if (script.hasAllowedEvent(ScriptConstants.DISABLE_HIT)) {
+        case ScriptGlobals.SM_016_HIT:
+            if (script.hasAllowedEvent(ScriptGlobals.DISABLE_HIT)) {
                 disallowed = true;
             }
             break;
-        case ScriptConstants.SM_028_INVENTORY2_OPEN:
+        case ScriptGlobals.SM_028_INVENTORY2_OPEN:
             if (script.hasAllowedEvent(
-                    ScriptConstants.DISABLE_INVENTORY2_OPEN)) {
+                    ScriptGlobals.DISABLE_INVENTORY2_OPEN)) {
                 disallowed = true;
             }
             break;
-        case ScriptConstants.SM_046_HEAR:
-            if (script.hasAllowedEvent(ScriptConstants.DISABLE_HEAR)) {
+        case ScriptGlobals.SM_046_HEAR:
+            if (script.hasAllowedEvent(ScriptGlobals.DISABLE_HEAR)) {
                 disallowed = true;
             }
             break;
-        case ScriptConstants.SM_023_UNDETECTPLAYER:
-        case ScriptConstants.SM_022_DETECTPLAYER:
-            if (script.hasAllowedEvent(ScriptConstants.DISABLE_DETECT)) {
+        case ScriptGlobals.SM_023_UNDETECTPLAYER:
+        case ScriptGlobals.SM_022_DETECTPLAYER:
+            if (script.hasAllowedEvent(ScriptGlobals.DISABLE_DETECT)) {
                 disallowed = true;
             }
             break;
-        case ScriptConstants.SM_057_AGGRESSION:
+        case ScriptGlobals.SM_057_AGGRESSION:
             if (script.hasAllowedEvent(
-                    ScriptConstants.DISABLE_AGGRESSION)) {
+                    ScriptGlobals.DISABLE_AGGRESSION)) {
                 disallowed = true;
             }
             break;
-        case ScriptConstants.SM_008_MAIN:
-            if (script.hasAllowedEvent(ScriptConstants.DISABLE_MAIN)) {
+        case ScriptGlobals.SM_008_MAIN:
+            if (script.hasAllowedEvent(ScriptGlobals.DISABLE_MAIN)) {
                 disallowed = true;
             }
             break;
-        case ScriptConstants.SM_073_CURSORMODE:
+        case ScriptGlobals.SM_073_CURSORMODE:
             if (script.hasAllowedEvent(
-                    ScriptConstants.DISABLE_CURSORMODE)) {
+                    ScriptGlobals.DISABLE_CURSORMODE)) {
                 disallowed = true;
             }
             break;
-        case ScriptConstants.SM_074_EXPLORATIONMODE:
+        case ScriptGlobals.SM_074_EXPLORATIONMODE:
             if (script.hasAllowedEvent(
-                    ScriptConstants.DISABLE_EXPLORATIONMODE)) {
+                    ScriptGlobals.DISABLE_EXPLORATIONMODE)) {
                 disallowed = true;
             }
             break;
-        case ScriptConstants.SM_061_KEY_PRESSED:
+        case ScriptGlobals.SM_061_KEY_PRESSED:
             // float dwCurrTime = ARX_TIME_Get();
             // if ((dwCurrTime - g_TimeStartCinemascope) < 3000) {
-            // return ScriptConstants.REFUSE;
+            // return ScriptGlobals.REFUSE;
             // }
             break;
         default:
@@ -176,7 +176,7 @@ function Script() {
         return disallowed;
     }
     this.eventStackClear = function() {
-        for (var i = 0; i < ScriptConstants.MAX_EVENT_STACK; i++) {
+        for (var i = 0; i < ScriptGlobals.MAX_EVENT_STACK; i++) {
             if (this.getStackedEvent(i).exists()) {
             	this.getStackedEvent(i).setParams(null);
             	this.getStackedEvent(i).setEventname(null);
@@ -189,7 +189,7 @@ function Script() {
         this.clearAdditionalEventStacks();
     }
     this.eventStackClearForIo = function(io) {
-        for (var i = 0; i < ScriptConstants.MAX_EVENT_STACK; i++) {
+        for (var i = 0; i < ScriptGlobals.MAX_EVENT_STACK; i++) {
             if (this.getStackedEvent(i).exists()
                     && io.equals(this.getStackedEvent(i).getIo())) {
             	this.getStackedEvent(i).setParams(null);
@@ -204,7 +204,7 @@ function Script() {
     }
     this.eventStackExecute = function() {
     	var count = 0;
-        for (var i = 0; i < ScriptConstants.MAX_EVENT_STACK; i++) {
+        for (var i = 0; i < ScriptGlobals.MAX_EVENT_STACK; i++) {
             if (this.getStackedEvent(i).exists()) {
             	var ioid = this.getStackedEvent(i).getIo().getRefId();
                 if (Interactive.getInstance().hasIO(ioid)) {
@@ -270,8 +270,8 @@ function Script() {
         if (gvars !== null) {
             for (var i = gvars.length - 1; i >= 0; i--) {
                 if (gvars[i] !== null
-                        && (gvars[i].getType() === ScriptConstants.TYPE_G_00_TEXT
-                                || gvars[i].getType() === ScriptConstants.TYPE_L_08_TEXT)
+                        && (gvars[i].getType() === ScriptGlobals.TYPE_G_00_TEXT
+                                || gvars[i].getType() === ScriptGlobals.TYPE_L_08_TEXT)
                         && gvars[i].getText() !== null) {
                     gvars[i].set(null);
                 }
@@ -292,9 +292,9 @@ function Script() {
             for (; i >= 0; i--) {
                 if (io.getScript().getLocalVariable(i) !== null
                         && (io.getScript().getLocalVariable(i).getType()
-                        		=== ScriptConstants.TYPE_G_00_TEXT
+                        		=== ScriptGlobals.TYPE_G_00_TEXT
                                 || io.getScript().getLocalVariable(i)
-                                        .getType() === ScriptConstants.TYPE_L_08_TEXT)
+                                        .getType() === ScriptGlobals.TYPE_L_08_TEXT)
                         && io.getScript().getLocalVariable(i).getText() !== null) {
                     io.getScript().getLocalVariable(i).set(null);
                 }
@@ -323,7 +323,7 @@ function Script() {
         for (var i = 0; i < gvars.length; i++) {
             if (gvars[i] !== null
                     && gvars[i].getName() === name
-                    && gvars[i].getType() === ScriptConstants.TYPE_G_03_FLOAT_ARR) {
+                    && gvars[i].getType() === ScriptGlobals.TYPE_G_03_FLOAT_ARR) {
                 index = i;
                 break;
             }
@@ -347,7 +347,7 @@ function Script() {
         for (var i = 0; i < gvars.length; i++) {
             if (gvars[i] !== null
                     && gvars[i].getName() === name
-                    && gvars[i].getType() === ScriptConstants.TYPE_G_02_FLOAT) {
+                    && gvars[i].getType() === ScriptGlobals.TYPE_G_02_FLOAT) {
                 index = i;
                 break;
             }
@@ -371,7 +371,7 @@ function Script() {
         for (var i = 0; i < gvars.length; i++) {
             if (gvars[i] !== null
                     && gvars[i].getName() === name
-                    && gvars[i].getType() === ScriptConstants.TYPE_G_05_INT_ARR) {
+                    && gvars[i].getType() === ScriptGlobals.TYPE_G_05_INT_ARR) {
                 index = i;
                 break;
             }
@@ -395,7 +395,7 @@ function Script() {
         for (var i = 0; i < gvars.length; i++) {
             if (gvars[i] !== null
                     && gvars[i].getName() === name
-                    && gvars[i].getType() === ScriptConstants.TYPE_G_04_INT) {
+                    && gvars[i].getType() === ScriptGlobals.TYPE_G_04_INT) {
                 index = i;
                 break;
             }
@@ -419,7 +419,7 @@ function Script() {
         for (var i = 0; i < gvars.length; i++) {
             if (gvars[i] !== null
                     && gvars[i].getName() === name
-                    && gvars[i].getType() === ScriptConstants.TYPE_G_07_LONG_ARR) {
+                    && gvars[i].getType() === ScriptGlobals.TYPE_G_07_LONG_ARR) {
                 index = i;
                 break;
             }
@@ -443,7 +443,7 @@ function Script() {
         for (var i = 0; i < gvars.length; i++) {
             if (gvars[i] !== null
                     && gvars[i].getName() === name
-                    && gvars[i].getType() === ScriptConstants.TYPE_G_06_LONG) {
+                    && gvars[i].getType() === ScriptGlobals.TYPE_G_06_LONG) {
                 index = i;
                 break;
             }
@@ -467,7 +467,7 @@ function Script() {
         for (var i = 0; i < gvars.length; i++) {
             if (gvars[i] !== null
                     && gvars[i].getName() === name
-                    && gvars[i].getType() === ScriptConstants.TYPE_G_01_TEXT_ARR) {
+                    && gvars[i].getType() === ScriptGlobals.TYPE_G_01_TEXT_ARR) {
                 index = i;
                 break;
             }
@@ -491,7 +491,7 @@ function Script() {
         for (var i = 0; i < gvars.length; i++) {
             if (gvars[i] !== null
                     && gvars[i].getName() === name
-                    && gvars[i].getType() === ScriptConstants.TYPE_G_00_TEXT) {
+                    && gvars[i].getType() === ScriptGlobals.TYPE_G_00_TEXT) {
                 index = i;
                 break;
             }
@@ -695,10 +695,10 @@ function Script() {
      * @throws RPGException if an error occurs
      */
     this.notifyIOEvent = function(io, msg, params) {
-    	var acceptance = ScriptConstants.REFUSE;
+    	var acceptance = ScriptGlobals.REFUSE;
         if (this.sendIOScriptEvent(io, msg, null, null) !== acceptance) {
             switch (msg) {
-            case ScriptConstants.SM_017_DIE:
+            case ScriptGlobals.SM_017_DIE:
                 if (io !== null && Interactive.getInstance().hasIO(io)) {
                     // TODO - set death color
                     // io->infracolor.b = 1.f;
@@ -709,7 +709,7 @@ function Script() {
             default:
                 break;
             }
-            acceptance = ScriptConstants.ACCEPT;
+            acceptance = ScriptGlobals.ACCEPT;
         }
         return acceptance;
     }
@@ -849,7 +849,7 @@ function Script() {
                 objIO.getScript().clearDisallowedEvents();
                 if (initialize) {
                     this.sendScriptEvent(objIO.getScript(),
-                            ScriptConstants.SM_001_INIT,
+                            ScriptGlobals.SM_001_INIT,
                             new Object[0],
                             objIO,
                             null);
@@ -868,7 +868,7 @@ function Script() {
 
                 if (initialize) {
                     this.sendScriptEvent(objIO.getOverscript(),
-                            ScriptConstants.SM_001_INIT,
+                            ScriptGlobals.SM_001_INIT,
                             new Object[0],
                             objIO,
                             null);
@@ -881,7 +881,7 @@ function Script() {
                 if (objIO !== null
                         && objIO.getScript() !== null) {
                     this.sendScriptEvent(objIO.getScript(),
-                            ScriptConstants.SM_033_INITEND,
+                            ScriptGlobals.SM_033_INITEND,
                             new Object[0],
                             objIO,
                             null);
@@ -890,7 +890,7 @@ function Script() {
                 if (objIO !== null
                         && objIO.getOverscript() !== null) {
                     this.sendScriptEvent(objIO.getOverscript(),
-                            ScriptConstants.SM_033_INITEND,
+                            ScriptGlobals.SM_033_INITEND,
                             new Object[0],
                             objIO,
                             null);
@@ -906,11 +906,11 @@ function Script() {
     var runEvent = function(script, eventName, io) {
     	var msg = 0;
         if (eventName.toUpperCase() === "INIT") {
-            msg = ScriptConstants.SM_001_INIT;
+            msg = ScriptGlobals.SM_001_INIT;
         } else if (eventName.toUpperCase() === "HIT") {
-            msg = ScriptConstants.SM_016_HIT;
+            msg = ScriptGlobals.SM_016_HIT;
         } else if (eventName.toUpperCase() === "INIT_END") {
-            msg = ScriptConstants.SM_033_INITEND;
+            msg = ScriptGlobals.SM_033_INITEND;
         }
         if (msg > 0) {
             runMessage(script, msg, io);
@@ -927,46 +927,46 @@ function Script() {
     }
     var runMessage = function(script, msg, io) {
         switch (msg) {
-        case ScriptConstants.SM_001_INIT:
+        case ScriptGlobals.SM_001_INIT:
             script.onInit();
             break;
-        case ScriptConstants.SM_002_INVENTORYIN:
+        case ScriptGlobals.SM_002_INVENTORYIN:
             script.onInventoryIn();
             break;
-        case ScriptConstants.SM_004_INVENTORYUSE:
+        case ScriptGlobals.SM_004_INVENTORYUSE:
             script.onInventoryUse();
             break;
-        case ScriptConstants.SM_007_EQUIPOUT:
+        case ScriptGlobals.SM_007_EQUIPOUT:
             script.onUnequip();
             break;
-        case ScriptConstants.SM_016_HIT:
+        case ScriptGlobals.SM_016_HIT:
             script.onHit();
             break;
-        case ScriptConstants.SM_017_DIE:
+        case ScriptGlobals.SM_017_DIE:
             script.onDie();
             break;
-        case ScriptConstants.SM_024_COMBINE:
+        case ScriptGlobals.SM_024_COMBINE:
             script.onCombine();
             break;
-        case ScriptConstants.SM_033_INITEND:
+        case ScriptGlobals.SM_033_INITEND:
             script.onInitEnd();
             break;
-        case ScriptConstants.SM_041_LOAD:
+        case ScriptGlobals.SM_041_LOAD:
             script.onLoad();
             break;
-        case ScriptConstants.SM_043_RELOAD:
+        case ScriptGlobals.SM_043_RELOAD:
             script.onReload();
             break;
-        case ScriptConstants.SM_045_OUCH:
+        case ScriptGlobals.SM_045_OUCH:
             script.onOuch();
             break;
-        case ScriptConstants.SM_046_HEAR:
+        case ScriptGlobals.SM_046_HEAR:
             script.onHear();
             break;
-        case ScriptConstants.SM_057_AGGRESSION:
+        case ScriptGlobals.SM_057_AGGRESSION:
             script.onAggression();
             break;
-        case ScriptConstants.SM_069_IDENTIFY:
+        case ScriptGlobals.SM_069_IDENTIFY:
             script.onIdentify();
             break;
         default:
@@ -1121,7 +1121,7 @@ function Script() {
         if (hio.getScript() !== null) {
             GLOB = 0;
             this.sendScriptEvent(hio.getScript(),
-                    ScriptConstants.SM_001_INIT,
+                    ScriptGlobals.SM_001_INIT,
                     null,
                     hio,
                     null);
@@ -1133,7 +1133,7 @@ function Script() {
             if (hio.getOverscript() !== null) {
                 GLOB = 0;
                 this.sendScriptEvent(hio.getOverscript(),
-                        ScriptConstants.SM_001_INIT,
+                        ScriptGlobals.SM_001_INIT,
                         null,
                         hio,
                         null);
@@ -1146,7 +1146,7 @@ function Script() {
             if (hio.getScript() !== null) {
                 GLOB = 0;
                 this.sendScriptEvent(hio.getScript(),
-                        ScriptConstants.SM_033_INITEND,
+                        ScriptGlobals.SM_033_INITEND,
                         null,
                         hio,
                         null);
@@ -1159,7 +1159,7 @@ function Script() {
             if (hio.getOverscript() !== null) {
                 GLOB = 0;
                 this.sendScriptEvent(hio.getOverscript(),
-                        ScriptConstants.SM_033_INITEND,
+                        ScriptGlobals.SM_033_INITEND,
                         null,
                         hio,
                         null);
@@ -1167,7 +1167,7 @@ function Script() {
             hio = null;
         }
         eventSender = oldEventSender;
-        return ScriptConstants.ACCEPT;
+        return ScriptGlobals.ACCEPT;
     }
     /**
      * Sends a script event to an interactive object. The returned value is a
@@ -1189,8 +1189,8 @@ function Script() {
 
         if (Interactive.getInstance().hasIO(num)) {
         	var originalEventSender = eventSender;
-            if (msg === ScriptConstants.SM_001_INIT
-                    || msg === ScriptConstants.SM_033_INITEND) {
+            if (msg === ScriptGlobals.SM_001_INIT
+                    || msg === ScriptGlobals.SM_033_INITEND) {
             	var hio = Interactive.getInstance().getIO(num);
                 sendIOScriptEventReverse(hio, msg, params, eventname);
                 eventSender = originalEventSender;
@@ -1220,7 +1220,7 @@ function Script() {
                         params,
                         hio,
                         eventname);
-                if (s !== ScriptConstants.REFUSE) {
+                if (s !== ScriptGlobals.REFUSE) {
                     eventSender = originalEventSender;
                     GLOB = 0;
 
@@ -1235,7 +1235,7 @@ function Script() {
                         eventSender = originalEventSender;
                         return ret;
                     } else {
-                        return ScriptConstants.REFUSE;
+                        return ScriptGlobals.REFUSE;
                     }
                 }
                 hio = null;
@@ -1244,7 +1244,7 @@ function Script() {
         }
 
         // Refused further processing.
-        return ScriptConstants.REFUSE;
+        return ScriptGlobals.REFUSE;
     }
     var sendIOScriptEventReverse = function(io, msg, params, eventname) {
         // checks invalid IO
@@ -1281,7 +1281,7 @@ function Script() {
                         params,
                         hio,
                         eventname);
-                if (s !== ScriptConstants.REFUSE) {
+                if (s !== ScriptGlobals.REFUSE) {
                     GLOB = 0;
                     if (Interactive.getInstance().hasIO(io.getRefId())) {
                         return this.sendScriptEvent(
@@ -1291,7 +1291,7 @@ function Script() {
                                 io,
                                 eventname);
                     } else {
-                        return ScriptConstants.REFUSE;
+                        return ScriptGlobals.REFUSE;
                     }
                 }
             }
@@ -1299,7 +1299,7 @@ function Script() {
             GLOB = 0;
         }
         // Refused further processing.
-        return ScriptConstants.REFUSE;
+        return ScriptGlobals.REFUSE;
     }
     /**
      * Sends a scripted event to all IOs.
@@ -1309,13 +1309,13 @@ function Script() {
      * @throws RPGException if an error occurs
      */
     this.sendMsgToAllIO = function(msg, dat) {
-    	var ret = ScriptConstants.ACCEPT;
+    	var ret = ScriptGlobals.ACCEPT;
     	var i = Interactive.getInstance().getMaxIORefId();
         for (; i >= 0; i--) {
             if (Interactive.getInstance().hasIO(i)) {
             	var io = Interactive.getInstance().getIO(i);
-                if (this.sendIOScriptEvent(io, msg, dat, null) === ScriptConstants.REFUSE) {
-                    ret = ScriptConstants.REFUSE;
+                if (this.sendIOScriptEvent(io, msg, dat, null) === ScriptGlobals.REFUSE) {
+                    ret = ScriptGlobals.REFUSE;
                 }
             }
         }
@@ -1333,49 +1333,49 @@ function Script() {
      * @throws RPGException
      */
     this.sendScriptEvent = function(localScript, msg, params, io, eventName) {
-    	var retVal = ScriptConstants.ACCEPT;
+    	var retVal = ScriptGlobals.ACCEPT;
     	var keepGoing = true;
         if (localScript === null) {
             throw new Error("script cannot be null");
         }
         if (io !== null) {
             if (io.hasGameFlag(IoGlobals.GFLAG_MEGAHIDE)
-                    && msg !== ScriptConstants.SM_043_RELOAD) {
-                return ScriptConstants.ACCEPT;
+                    && msg !== ScriptGlobals.SM_043_RELOAD) {
+                return ScriptGlobals.ACCEPT;
             }
 
             if (io.getShow() === IoGlobals.SHOW_FLAG_DESTROYED) {
                 // destroyed
-                return ScriptConstants.ACCEPT;
+                return ScriptGlobals.ACCEPT;
             }
             eventTotalCount++;
             io.setStatCount(io.getStatCount() + 1);
 
             if (io.hasIOFlag(IoGlobals.IO_06_FREEZESCRIPT)) {
-                if (msg === ScriptConstants.SM_041_LOAD) {
-                    return ScriptConstants.ACCEPT;
+                if (msg === ScriptGlobals.SM_041_LOAD) {
+                    return ScriptGlobals.ACCEPT;
                 }
-                return ScriptConstants.REFUSE;
+                return ScriptGlobals.REFUSE;
             }
 
             if (io.hasIOFlag(IoGlobals.IO_03_NPC)
                     && !io.hasIOFlag(IoGlobals.IO_09_DWELLING)) {
                 if (io.getNPCData().getBaseLife() <= 0
-                        && msg !== ScriptConstants.SM_001_INIT
-                        && msg !== ScriptConstants.SM_012_DEAD
-                        && msg !== ScriptConstants.SM_017_DIE
-                        && msg !== ScriptConstants.SM_255_EXECUTELINE
-                        && msg !== ScriptConstants.SM_043_RELOAD
-                        && msg !== ScriptConstants.SM_255_EXECUTELINE
-                        && msg !== ScriptConstants.SM_028_INVENTORY2_OPEN
-                        && msg !== ScriptConstants.SM_029_INVENTORY2_CLOSE) {
-                    return ScriptConstants.ACCEPT;
+                        && msg !== ScriptGlobals.SM_001_INIT
+                        && msg !== ScriptGlobals.SM_012_DEAD
+                        && msg !== ScriptGlobals.SM_017_DIE
+                        && msg !== ScriptGlobals.SM_255_EXECUTELINE
+                        && msg !== ScriptGlobals.SM_043_RELOAD
+                        && msg !== ScriptGlobals.SM_255_EXECUTELINE
+                        && msg !== ScriptGlobals.SM_028_INVENTORY2_OPEN
+                        && msg !== ScriptGlobals.SM_029_INVENTORY2_CLOSE) {
+                    return ScriptGlobals.ACCEPT;
                 }
             }
             // change weapon if one breaks
             /*
              * if (((io->ioflags & IO_FIX) || (io->ioflags & IO_ITEM)) && (msg
-             * === ScriptConstants.SM_BREAK)) { ManageCasseDArme(io); }
+             * === ScriptGlobals.SM_BREAK)) { ManageCasseDArme(io); }
              */
         }
         // use master script if available
@@ -1396,11 +1396,11 @@ function Script() {
             runEvent(script, eventName, io);
         } else {
             if (eventIsDisallowed(msg, script)) {
-                return ScriptConstants.REFUSE;
+                return ScriptGlobals.REFUSE;
             }
             runMessage(script, msg, io);
         }
-        var ret = ScriptConstants.ACCEPT;
+        var ret = ScriptGlobals.ACCEPT;
         return ret;
     }
     /**
@@ -1414,74 +1414,74 @@ function Script() {
         if (event.toUpperCase() === "COLLIDE_NPC") {
             if (isOn) {
                 io.getScript().removeDisallowedEvent(
-                        ScriptConstants.DISABLE_COLLIDE_NPC);
+                        ScriptGlobals.DISABLE_COLLIDE_NPC);
             } else {
                 io.getScript().assignDisallowedEvent(
-                        ScriptConstants.DISABLE_COLLIDE_NPC);
+                        ScriptGlobals.DISABLE_COLLIDE_NPC);
             }
         } else if (event.toUpperCase() === "CHAT") {
             if (isOn) {
-                io.getScript().removeDisallowedEvent(ScriptConstants.DISABLE_CHAT);
+                io.getScript().removeDisallowedEvent(ScriptGlobals.DISABLE_CHAT);
             } else {
-                io.getScript().assignDisallowedEvent(ScriptConstants.DISABLE_CHAT);
+                io.getScript().assignDisallowedEvent(ScriptGlobals.DISABLE_CHAT);
             }
         } else if (event.toUpperCase() === "HIT") {
             if (isOn) {
-                io.getScript().removeDisallowedEvent(ScriptConstants.DISABLE_HIT);
+                io.getScript().removeDisallowedEvent(ScriptGlobals.DISABLE_HIT);
             } else {
-                io.getScript().assignDisallowedEvent(ScriptConstants.DISABLE_HIT);
+                io.getScript().assignDisallowedEvent(ScriptGlobals.DISABLE_HIT);
             }
         } else if (event.toUpperCase() === "INVENTORY2_OPEN") {
             if (isOn) {
                 io.getScript().removeDisallowedEvent(
-                        ScriptConstants.DISABLE_INVENTORY2_OPEN);
+                        ScriptGlobals.DISABLE_INVENTORY2_OPEN);
             } else {
                 io.getScript().assignDisallowedEvent(
-                        ScriptConstants.DISABLE_INVENTORY2_OPEN);
+                        ScriptGlobals.DISABLE_INVENTORY2_OPEN);
             }
         } else if (event.toUpperCase() === "DETECTPLAYER") {
             if (isOn) {
                 io.getScript()
-                        .removeDisallowedEvent(ScriptConstants.DISABLE_DETECT);
+                        .removeDisallowedEvent(ScriptGlobals.DISABLE_DETECT);
             } else {
                 io.getScript()
-                        .assignDisallowedEvent(ScriptConstants.DISABLE_DETECT);
+                        .assignDisallowedEvent(ScriptGlobals.DISABLE_DETECT);
             }
         } else if (event.toUpperCase() === "HEAR") {
             if (isOn) {
-                io.getScript().removeDisallowedEvent(ScriptConstants.DISABLE_HEAR);
+                io.getScript().removeDisallowedEvent(ScriptGlobals.DISABLE_HEAR);
             } else {
-                io.getScript().assignDisallowedEvent(ScriptConstants.DISABLE_HEAR);
+                io.getScript().assignDisallowedEvent(ScriptGlobals.DISABLE_HEAR);
             }
         } else if (event.toUpperCase() === "AGGRESSION") {
             if (isOn) {
                 io.getScript()
-                        .removeDisallowedEvent(ScriptConstants.DISABLE_AGGRESSION);
+                        .removeDisallowedEvent(ScriptGlobals.DISABLE_AGGRESSION);
             } else {
                 io.getScript()
-                        .assignDisallowedEvent(ScriptConstants.DISABLE_AGGRESSION);
+                        .assignDisallowedEvent(ScriptGlobals.DISABLE_AGGRESSION);
             }
         } else if (event.toUpperCase() === "MAIN") {
             if (isOn) {
-                io.getScript().removeDisallowedEvent(ScriptConstants.DISABLE_MAIN);
+                io.getScript().removeDisallowedEvent(ScriptGlobals.DISABLE_MAIN);
             } else {
-                io.getScript().assignDisallowedEvent(ScriptConstants.DISABLE_MAIN);
+                io.getScript().assignDisallowedEvent(ScriptGlobals.DISABLE_MAIN);
             }
         } else if (event.toUpperCase() === "CURSORMODE") {
             if (isOn) {
                 io.getScript()
-                        .removeDisallowedEvent(ScriptConstants.DISABLE_CURSORMODE);
+                        .removeDisallowedEvent(ScriptGlobals.DISABLE_CURSORMODE);
             } else {
                 io.getScript()
-                        .assignDisallowedEvent(ScriptConstants.DISABLE_CURSORMODE);
+                        .assignDisallowedEvent(ScriptGlobals.DISABLE_CURSORMODE);
             }
         } else if (event.toUpperCase() === "EXPLORATIONMODE") {
             if (isOn) {
                 io.getScript().removeDisallowedEvent(
-                        ScriptConstants.DISABLE_EXPLORATIONMODE);
+                        ScriptGlobals.DISABLE_EXPLORATIONMODE);
             } else {
                 io.getScript().assignDisallowedEvent(
-                        ScriptConstants.DISABLE_EXPLORATIONMODE);
+                        ScriptGlobals.DISABLE_EXPLORATIONMODE);
             }
         }
     }
@@ -1518,25 +1518,25 @@ function Script() {
             // create a new variable and add to the global array
             var vari = null;
             if (typeof value === 'string') {
-                vari = new ScriptVariable(name, ScriptConstants.TYPE_G_00_TEXT, value);
+                vari = new ScriptVariable(name, ScriptGlobals.TYPE_G_00_TEXT, value);
             } else if (typeof value === 'number') {
             	if ((value | 0) === value) {
-                    vari = new ScriptVariable(name, ScriptConstants.TYPE_G_04_INT, value);
+                    vari = new ScriptVariable(name, ScriptGlobals.TYPE_G_04_INT, value);
             	} else if (value % 1 === 0) {
-                    vari = new ScriptVariable(name, ScriptConstants.TYPE_G_06_LONG, value);
+                    vari = new ScriptVariable(name, ScriptGlobals.TYPE_G_06_LONG, value);
             	} else {
-                    vari = new ScriptVariable(name, ScriptConstants.TYPE_G_02_FLOAT, value);
+                    vari = new ScriptVariable(name, ScriptGlobals.TYPE_G_02_FLOAT, value);
             	}
             } else if (Array.isArray(value)) {
                 if (typeof value[0] === 'string') {
-                    vari = new ScriptVariable(name, ScriptConstants.TYPE_G_01_TEXT_ARR, value);
+                    vari = new ScriptVariable(name, ScriptGlobals.TYPE_G_01_TEXT_ARR, value);
                 } else if (typeof value[0] === 'number') {
                 	if ((value[0] | 0) === value[0]) {
-                        vari = new ScriptVariable(name, ScriptConstants.TYPE_G_05_INT_ARR, value);
+                        vari = new ScriptVariable(name, ScriptGlobals.TYPE_G_05_INT_ARR, value);
                 	} else if (value[0] % 1 === 0) {
-                        vari = new ScriptVariable(name, ScriptConstants.TYPE_G_07_LONG_ARR, value);
+                        vari = new ScriptVariable(name, ScriptGlobals.TYPE_G_07_LONG_ARR, value);
                 	} else {
-                        vari = new ScriptVariable(name, ScriptConstants.TYPE_G_03_FLOAT_ARR, value);
+                        vari = new ScriptVariable(name, ScriptGlobals.TYPE_G_03_FLOAT_ARR, value);
                 	}
                 }
             } else {
@@ -1547,7 +1547,7 @@ function Script() {
                 sb.push("float[], Integer, int[], Long, or long[] allowed.");
                 throw new Error(sb.join(""));
             }
-            gvars.push(varis);
+            gvars.push(vari);
         }
     }
     /**
@@ -1808,7 +1808,7 @@ function Script() {
      * @param eventname the event name
      */
     this.stackSendIOScriptEvent = function(io, msg, params, eventname) {
-        for (var i = 0; i < ScriptConstants.MAX_EVENT_STACK; i++) {
+        for (var i = 0; i < ScriptGlobals.MAX_EVENT_STACK; i++) {
             if (!this.getStackedEvent(i).exists()) {
                 if (params !== null
                         && params.length > 0) {

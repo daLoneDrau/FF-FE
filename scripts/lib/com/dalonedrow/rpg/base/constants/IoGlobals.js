@@ -45,6 +45,6 @@ var IoGlobals = (function () {
 		/** flag indicating the interactive object is a party. */
 		IO_14_PARTY					: 8192,
 		/** flag indicating the interactive object is a winged mount. */
-		IO_15_MOVABLE				: 16384,
+		IO_15_MOVABLE				: 16384
 	}
 })();

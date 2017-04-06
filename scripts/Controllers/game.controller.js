@@ -4,7 +4,7 @@
 
 // scope syntax, not controller-as
 angular.module('restApp').controller('GameController', function($scope, $window,
-		equipmentSlotService,
+		equipmentSlotService, elementService,
 		/*basicAttributeService, basicElementService,*/ $q, $http) {
     $scope.newEntity = {
         name: "",
@@ -169,9 +169,9 @@ angular.module('restApp').controller('GameController', function($scope, $window,
             }
         });
     };
-    var loadEquipmentSlots = function() {        
-        var promise = equipmentSlotService.getEntities();
-        promise.then(function(response) {
+    var loadAll = function() {
+        var promise1 = equipmentSlotService.getEntities();
+        promise1.then(function(response) {
             console.log("GET::");
             console.log(response);
             if (response.status === 200) {
@@ -185,8 +185,28 @@ angular.module('restApp').controller('GameController', function($scope, $window,
                     }
                     FFEquipmentSlots.values.push(new FFEquipmentSlots(list[i].name, list[i].value));
                 }
-                init();
             }
+        });
+        var promise2 = elementService.getEntities();
+        promise2.then(function(response) {
+            console.log("GET::");
+            console.log(response);
+            if (response.status === 200) {
+                var list = response.data;
+                for (var i = list.length - 1; i >= 0; i--) {
+                    if (angular.isUndefined(list[i].id)) {
+                    	list[i].id = 0;
+                    }
+                    if (angular.isUndefined(list[i].value)) {
+                    	list[i].value = 0;
+                    }
+                    FFEquipmentElements.values.push(new FFEquipmentElements(list[i].code, list[i].value));
+                }
+            }
+        });
+        $q.all([promise1, promise2]).then(function(){
+            // yes, this only runs after all of the promises fulfilled
+            init();
         });
     };
     var init = function() {
@@ -196,9 +216,14 @@ angular.module('restApp').controller('GameController', function($scope, $window,
         Interactive.setInstance(o);
         o = new FFScript();
         Script.setInstance(o);
-        console.log(Interactive.getInstance().getMaxIORefId());
-        console.log(ProjectConstants.getInstance().getConsoleWidth());
-    }
+        o = new FFSpeech();
+        Speech.setInstance(o);
+        //new FFSpellController();
+        //new FFText();
+        //new FFGUI();
+        //new Combat();
+        Interactive.getInstance().newHero();
+    };
     //getAllEntities();
-    loadEquipmentSlots();
+    loadAll();
 });

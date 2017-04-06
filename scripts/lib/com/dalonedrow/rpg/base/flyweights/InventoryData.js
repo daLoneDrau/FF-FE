@@ -42,11 +42,11 @@ function InventoryData() {
             // send event from item to inventory owner
             Script.getInstance().setEventSender(itemIO);
             Script.getInstance().sendIOScriptEvent(invOwnerIO,
-                    ScriptConsts.SM_002_INVENTORYIN, new Object[0], null);
+                    ScriptGlobals.SM_002_INVENTORYIN, new Object[0], null);
             // send event from inventory owner to item
             Script.getInstance().setEventSender(invOwnerIO);
             Script.getInstance().sendIOScriptEvent(itemIO,
-                    ScriptConsts.SM_002_INVENTORYIN, new Object[0], null);
+                    ScriptGlobals.SM_002_INVENTORYIN, new Object[0], null);
             // clear global event sender
             Script.getInstance().setEventSender(null);
         }
@@ -66,7 +66,7 @@ function InventoryData() {
             if (playerIO.getPCData().canIdentifyEquipment(
                     itemIO.getItemData().getEquipitem())) {
                 Script.getInstance().sendIOScriptEvent(itemIO,
-                        ScriptConsts.SM_69_IDENTIFY, null, "");
+                        ScriptGlobals.SM_69_IDENTIFY, null, "");
             }
         }
     }

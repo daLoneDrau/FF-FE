@@ -7,26 +7,26 @@ function FFScript() {
     var scriptTimers = [];
     this.eventStackInit = function() {
         eventstack = [];
-        for (var i = 0; i < ScriptConsts.MAX_EVENT_STACK; i++) {
-            eventstack.push(new FFStackedEvent());
+        for (var i = 0; i < ScriptGlobals.MAX_EVENT_STACK; i++) {
+            eventstack.push(new StackedEvent());
         }
         postScriptStack = [];
-        for (var i = 0; i < ScriptConsts.MAX_EVENT_STACK; i++) {
-            postScriptStack.push(new FFStackedEvent());
+        for (var i = 0; i < ScriptGlobals.MAX_EVENT_STACK; i++) {
+            postScriptStack.push(new StackedEvent());
         }
     }
     
     this.eventStackInit();
     this.setMaxTimerScript(100);
     for (var i = this.getMaxTimerScript() - 1; i >= 0; i--) {
-        scriptTimers.push(new FFScriptTimer());
+        scriptTimers.push(new ScriptTimer());
     }
     // init global params
     this.setGlobalVariable("PLAYERCASTING", 0);
     this.setGlobalVariable("COMBATROUND", 0);
     this.setGlobalVariable("SHUT_UP", 0);
     this.clearAdditionalEventStacks = function() {
-        for (var i = 0; i < ScriptConsts.MAX_EVENT_STACK; i++) {
+        for (var i = 0; i < ScriptGlobals.MAX_EVENT_STACK; i++) {
             if (postScriptStack[i].exists()) {
                 postScriptStack[i].setParams(null);
                 postScriptStack[i].setEventname(null);
@@ -38,7 +38,7 @@ function FFScript() {
         }
     }
     this.clearAdditionalEventStacksForIO = function(io) {
-        for (var i = 0; i < ScriptConsts.MAX_EVENT_STACK; i++) {
+        for (var i = 0; i < ScriptGlobals.MAX_EVENT_STACK; i++) {
             if (postScriptStack[i].exists()
                     && io.equals(postScriptStack[i].getIo())) {
                 postScriptStack[i].setParams(null);
@@ -84,7 +84,7 @@ function FFScript() {
         }
     }
     var postScriptStackClear = function() {
-        for (var i = 0; i < ScriptConsts.MAX_EVENT_STACK; i++) {
+        for (var i = 0; i < ScriptGlobals.MAX_EVENT_STACK; i++) {
             if (postScriptStack[i].exists()) {
                 postScriptStack[i].setParams(null);
                 postScriptStack[i].setEventname(null);
@@ -99,7 +99,7 @@ function FFScript() {
         scriptTimers[index] = timer;
     }
     this.stackSendPostScriptEvent = function(io, msg, params, eventname) {
-        for (var i = 0; i < ScriptConsts.MAX_EVENT_STACK; i++) {
+        for (var i = 0; i < ScriptGlobals.MAX_EVENT_STACK; i++) {
             if (!postScriptStack[i].exists()) {
                 if (params !== null
                         && params.length > 0) {
@@ -123,7 +123,7 @@ function FFScript() {
         }
     }
     var transferPostScriptStack = function() {
-        for (var i = 0; i < ScriptConsts.MAX_EVENT_STACK; i++) {
+        for (var i = 0; i < ScriptGlobals.MAX_EVENT_STACK; i++) {
             if (postScriptStack[i].exists()) {
                 this.stackSendIOScriptEvent(
                         postScriptStack[i].getIo(),

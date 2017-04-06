@@ -50,7 +50,7 @@ function IOItemData() {
         // send event to target. someone attacked you!
         Script.getInstance().setEventSender(io_source);
         Script.getInstance().sendIOScriptEvent(io_target,
-                ScriptConstants.SM_057_AGGRESSION, null, null);
+                ScriptGlobals.SM_057_AGGRESSION, null, null);
         if (io_source !== null
                 && io_target !== null) {
             if (!io_target.hasIOFlag(IoGlobals.IO_01_PC)
@@ -91,15 +91,15 @@ function IOItemData() {
                     attack = io_source.getPCData().getFullDamage();
                     if (io_source.getPCData().calculateCriticalHit()
                             && Script.getInstance().sendIOScriptEvent(
-                                    io_source, ScriptConstants.SM_054_CRITICAL,
-                                    null, null) !== ScriptConstants.REFUSE) {
+                                    io_source, ScriptGlobals.SM_054_CRITICAL,
+                                    null, null) !== ScriptGlobals.REFUSE) {
                         critical = true;
                     }
                     damages = attack * dmgModifier;
                     if (io_source.getPCData().calculateBackstab()
                             && Script.getInstance().sendIOScriptEvent(
-                                    io_source, ScriptConstants.SM_056_BACKSTAB,
-                                    null, null) !== ScriptConstants.REFUSE) {
+                                    io_source, ScriptGlobals.SM_056_BACKSTAB,
+                                    null, null) !== ScriptGlobals.REFUSE) {
                         backstab = this.getBackstabModifier();
                     }
                 } else {
@@ -124,16 +124,16 @@ function IOItemData() {
                         if (io_source.getNPCData().calculateCriticalHit()
                                 && Script.getInstance().sendIOScriptEvent(
                                         io_source,
-                                        ScriptConstants.SM_054_CRITICAL,
-                                        null, null) !== ScriptConstants.REFUSE) {
+                                        ScriptGlobals.SM_054_CRITICAL,
+                                        null, null) !== ScriptGlobals.REFUSE) {
                             critical = true;
                         }
                         damages = attack * dmgModifier;
                         if (io_source.getNPCData().calculateBackstab()
                                 && Script.getInstance().sendIOScriptEvent(
                                         io_source,
-                                        ScriptConstants.SM_056_BACKSTAB,
-                                        null, null) !== ScriptConstants.REFUSE) {
+                                        ScriptGlobals.SM_056_BACKSTAB,
+                                        null, null) !== ScriptGlobals.REFUSE) {
                             backstab = this.getBackstabModifier();
                         }
                     } else {
@@ -347,11 +347,11 @@ function IOItemData() {
                         // send event from this item to target to unequip
                         Script.getInstance().setEventSender(io);
                         Script.getInstance().sendIOScriptEvent(target,
-                                ScriptConsts.SM_007_EQUIPOUT, null, null);
+                                ScriptGlobals.SM_007_EQUIPOUT, null, null);
                         // send event from target to this item to unequip
                         Script.getInstance().setEventSender(target);
                         Script.getInstance().sendIOScriptEvent(io,
-                                ScriptConsts.SM_007_EQUIPOUT, null, null);
+                                ScriptGlobals.SM_007_EQUIPOUT, null, null);
                     }
                 }
                 if (io.hasTypeFlag(EquipmentGlobals.OBJECT_TYPE_HELMET)

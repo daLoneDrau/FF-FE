@@ -36,7 +36,7 @@ angular.module('restApp').factory('attributeService', function($http, $q) {
     return dataFactory;
 });
 
-angular.module('restApp').factory('basicElementService', function($http, $q) {
+angular.module('restApp').factory('elementService', function($http, $q) {
     var urlBase = [ httpBase, 'equipment_element_types' ].join("");
     var dataFactory = {};
 

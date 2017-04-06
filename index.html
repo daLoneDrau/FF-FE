@@ -10,7 +10,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.6.1/angular.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.6.1/angular-route.min.js"></script>
     <!-- load application -->
-    <script type="text/javascript" src="./Scripts/lib/app.js"></script>
+    <script type="text/javascript" src="./scripts/lib/app.js"></script>
     <!-- load templates -->
     <script type="text/javascript" src="./templates/main.template.js"></script>
     <script type="text/javascript" src="./templates/nav.template.js"></script>
@@ -25,28 +25,38 @@
     <!-- load controllers -->
     <script type="text/javascript" src="./scripts/Controllers/game.controller.js"></script>
     <!-- load services -->
-    <script type="text/javascript" src="./Scripts/lib/services.js"></script>
+    <script type="text/javascript" src="./scripts/lib/services.js"></script>
     <!-- load rpg base library -->
     <script type="text/javascript" src="./scripts/lib/com/dalonedrow/engine/sprite/base/Hashcode.js"></script>
+    <script type="text/javascript" src="./scripts/lib/com/dalonedrow/utils/Watchable.js"></script>
     <script type="text/javascript" src="./scripts/lib/com/dalonedrow/engine/sprite/base/SimpleVector2.js"></script>
     <script type="text/javascript" src="./scripts/lib/com/dalonedrow/engine/systems/base/Interactive.js"></script>
     <script type="text/javascript" src="./scripts/lib/com/dalonedrow/engine/systems/base/ProjectConstants.js"></script>
+    <script type="text/javascript" src="./scripts/lib/com/dalonedrow/rpg/base/constants/EquipmentGlobals.js"></script>
     <script type="text/javascript" src="./scripts/lib/com/dalonedrow/rpg/base/constants/IoGlobals.js"></script>
+    <script type="text/javascript" src="./scripts/lib/com/dalonedrow/rpg/base/constants/ScriptGlobals.js"></script>
     <script type="text/javascript" src="./scripts/lib/com/dalonedrow/rpg/base/flyweights/BaseInteractiveObject.js"></script>
     <script type="text/javascript" src="./scripts/lib/com/dalonedrow/rpg/base/flyweights/InventoryData.js"></script>
     <script type="text/javascript" src="./scripts/lib/com/dalonedrow/rpg/base/flyweights/InventorySlot.js"></script>
     <script type="text/javascript" src="./scripts/lib/com/dalonedrow/rpg/base/flyweights/IOCharacter.js"></script>
+    <script type="text/javascript" src="./scripts/lib/com/dalonedrow/rpg/base/flyweights/IOEquipItem.js"></script>
     <script type="text/javascript" src="./scripts/lib/com/dalonedrow/rpg/base/flyweights/IOItemData.js"></script>
     <script type="text/javascript" src="./scripts/lib/com/dalonedrow/rpg/base/flyweights/IOSpellCastData.js"></script>
+    <script type="text/javascript" src="./scripts/lib/com/dalonedrow/rpg/base/flyweights/ScriptTimer.js"></script>
+    <script type="text/javascript" src="./scripts/lib/com/dalonedrow/rpg/base/flyweights/ScriptVariable.js"></script>
+    <script type="text/javascript" src="./scripts/lib/com/dalonedrow/rpg/base/flyweights/StackedEvent.js"></script>
     <script type="text/javascript" src="./scripts/lib/com/dalonedrow/rpg/base/systems/Script.js"></script>
-    <script type="text/javascript" src="./scripts/lib/com/dalonedrow/utils/Watchable.js"></script>
+    <script type="text/javascript" src="./scripts/lib/com/dalonedrow/rpg/base/systems/Speech.js"></script>
     <!-- load rpg module library -->
+    <script type="text/javascript" src="./scripts/lib/com/dalonedrow/module/ff/constants/FFEquipmentElements.js"></script>
     <script type="text/javascript" src="./scripts/lib/com/dalonedrow/module/ff/constants/FFEquipmentSlots.js"></script>
     <script type="text/javascript" src="./scripts/lib/com/dalonedrow/module/ff/rpg/FFInteractiveObject.js"></script>
     <script type="text/javascript" src="./scripts/lib/com/dalonedrow/module/ff/rpg/FFInventory.js"></script>
+    <script type="text/javascript" src="./scripts/lib/com/dalonedrow/module/ff/rpg/FFItem.js"></script>
     <script type="text/javascript" src="./scripts/lib/com/dalonedrow/module/ff/systems/FFController.js"></script>
     <script type="text/javascript" src="./scripts/lib/com/dalonedrow/module/ff/systems/FFInteractive.js"></script>
     <script type="text/javascript" src="./scripts/lib/com/dalonedrow/module/ff/systems/FFScript.js"></script>
+    <script type="text/javascript" src="./scripts/lib/com/dalonedrow/module/ff/systems/FFSpeech.js"></script>
     <!-- link to bootstrap 1st.  minified is for production -->
     <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
     <!-- links to custom styles go here -->
