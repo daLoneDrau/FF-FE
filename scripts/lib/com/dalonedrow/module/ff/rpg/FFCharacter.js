@@ -1,172 +1,103 @@
-function FFCharacter extends IoPcData<FFInteractiveObject> {
-    /** the list of attributes and their matching names and modifiers. */
-    private static final Object[][] attributeMap = new Object[][] {
-            { "ST", "Stamina",
-                    FFEquipmentElements.valueOf("ELEMENT_STAMINA").getIndex() },
-            { "MST", "Max Stamina",
-                    FFEquipmentElements.valueOf("ELEMENT_MAX_STAMINA")
-                            .getIndex() },
-            { "SK", "Skill",
-                    FFEquipmentElements.valueOf("ELEMENT_SKILL").getIndex() },
-            { "MSK", "Max Skill",
-                    FFEquipmentElements.valueOf("ELEMENT_MAX_SKILL")
-                            .getIndex() },
-            { "LK", "Luck",
-                    FFEquipmentElements.valueOf("ELEMENT_LUCK").getIndex() },
-            { "MLK", "Max Luck",
-                    FFEquipmentElements.valueOf("ELEMENT_MAX_LUCK")
-                            .getIndex() },
-            { "DMG", "Damage",
-                    FFEquipmentElements.valueOf("ELEMENT_DAMAGE")
-                            .getIndex() } };
+function FFCharacter() {
+	IoPcData.call(this);
     /** flag indicating pretty printing has been turned on. */
-    private boolean prettyPrinting;
-    private boolean REFUSE_GAME_RETURN;
-    /**
-     * Creates a new instance of {@link FFCharacter}.
-     * @throws RPGException if an error occurs
-     */
-    public FFCharacter() throws RPGException {
-        super();
-    }
-    /**
-     * {@inheritDoc}
-     */
-    @Override
-    protected void adjustMana(final float dmg) {
+    var prettyPrinting = false;
+    var REFUSE_GAME_RETURN = false;
+    this.adjustMana = function(dmg) {
         // TODO Auto-generated method stub
 
     }
-    @Override
-    protected void applyRulesModifiers() throws RPGException {
+    this.applyRulesModifiers = function() {
         // TODO Auto-generated method stub
 
     }
-    @Override
-    protected void applyRulesPercentModifiers() {
+    this.applyRulesPercentModifiers = function() {
         // TODO Auto-generated method stub
 
     }
-    /**
-     * {@inheritDoc}
-     */
-    @Override
-    public void ARX_EQUIPMENT_RecreatePlayerMesh() {
+    this.ARX_EQUIPMENT_RecreatePlayerMesh = function() {
         // TODO Auto-generated method stub
 
     }
-    @Override
-    public boolean calculateBackstab() {
+    this.calculateBackstab = function() {
         return false;
     }
-    @Override
-    public boolean calculateCriticalHit() {
+    this.calculateCriticalHit = function() {
         return false;
     }
-    /**
-     * {@inheritDoc}
-     */
-    @Override
-    public boolean canIdentifyEquipment(final IOEquipItem equipitem) {
+    this.canIdentifyEquipment = function(equipitem) {
         // TODO Auto-generated method stub
         return false;
     }
-    @Override
-    protected Object[][] getAttributeMap() {
+    this.getAttributeMap = function() {
         return FFCharacter.attributeMap;
     }
-    /**
-     * {@inheritDoc}
-     */
-    @Override
-    protected float getBaseLife() {
-        return super.getFullAttributeScore("ST");
+    this.getBaseLife = function() {
+        return this.getFullAttributeScore("ST");
     }
-    /**
-     * {@inheritDoc}
-     */
-    @Override
-    protected float getBaseMana() {
+    this.getBaseMana = function() {
         // TODO Auto-generated method stub
         return 0;
     }
-    @Override
-    public float getFullDamage() {
-        return super.getFullAttributeScore("DMG");
+    this.getFullDamage = function() {
+        return this.getFullAttributeScore("DMG");
     }
-    @Override
-    protected String getLifeAttribute() {
+    this.getLifeAttribute = function() {
         return "ST";
     }
-    @Override
-    public float getMaxLife() {
-        return super.getBaseAttributeScore("MST");
+    this.getMaxLife = function() {
+        return this.getBaseAttributeScore("MST");
     }
     /**
      * Gets the status strings used in the display.
      * @return {@link String}[]
-     * @throws RPGException if an error occurs
+     * @if an error occurs
      */
-    public String[] getStatusString() throws RPGException {
-        super.computeFullStats();
-        String sk = "", st = "", lk = "";
-        PooledStringBuilder sb =
-                StringBuilderPool.getInstance().getStringBuilder();
-        try {
-            sb.append((int) getFullAttributeScore("SK"));
-            sb.append('/');
-            sb.append((int) getFullAttributeScore("MSK"));
-            sk = sb.toString();
-            sb.setLength(0);
-            sb.append((int) getFullAttributeScore("ST"));
-            sb.append('/');
-            sb.append((int) getFullAttributeScore("MST"));
-            st = sb.toString();
-            sb.setLength(0);
-            sb.append((int) getFullAttributeScore("LK"));
-            sb.append('/');
-            sb.append((int) getFullAttributeScore("MLK"));
-            lk = sb.toString();
-        } catch (PooledException e) {
-            throw new RPGException(ErrorMessage.INTERNAL_ERROR, e);
-        }
-        sb.returnToPool();
-        sb = null;
-        String[] s = new String[] { sk, st, lk };
-        sk = null;
-        st = null;
-        lk = null;
-        return s;
+    this.getStatusString = function() {
+        this.computeFullStats();
+        var sk = "", st = "", lk = "";
+        var sb = [];
+        sb.push(getFullAttributeScore("SK"));
+        sb.push('/');
+        sb.push(getFullAttributeScore("MSK"));
+        sk = sb.join("");
+        sb = [];
+        sb.push(getFullAttributeScore("ST"));
+        sb.push('/');
+        sb.push(getFullAttributeScore("MST"));
+        st = sb.join("");
+        sb.setLength(0);
+        sb.push(getFullAttributeScore("LK"));
+        sb.push('/');
+        sb.push(getFullAttributeScore("MLK"));
+        lk = sb.join("");
+        return [ sk, st, lk ];
     }
-    /**
-     * {@inheritDoc}
-     */
-    @Override
-    public boolean isInCombat() {
+    this.isInCombat = function() {
         // TODO Auto-generated method stub
         return false;
     }
-    public void newHero() throws RPGException {
+    this.newHero = function() {
         // roll stats
-        int roll = Dice.ONE_D6.roll() + 6;
-        super.setBaseAttributeScore("SK", roll);
-        super.setBaseAttributeScore("MSK", roll);
+    	var roll = Dice.ONE_D6.roll() + 6;
+        this.setBaseAttributeScore("SK", roll);
+        this.setBaseAttributeScore("MSK", roll);
         roll = Dice.TWO_D6.roll() + 12;
-        super.setBaseAttributeScore("ST", roll);
-        super.setBaseAttributeScore("MST", roll);
+        this.setBaseAttributeScore("ST", roll);
+        this.setBaseAttributeScore("MST", roll);
         roll = Dice.ONE_D6.roll() + 6;
-        super.setBaseAttributeScore("LK", roll);
-        super.setBaseAttributeScore("MLK", roll);
+        this.setBaseAttributeScore("LK", roll);
+        this.setBaseAttributeScore("MLK", roll);
         // equip iron sword
         FFWebServiceClient.getInstance().loadItem(
                 "IRON SWORD").getItemData().ARX_EQUIPMENT_Equip(getIo());
-        super.computeFullStats();
+        this.computeFullStats();
     }
     /**
      * Sets the value of the flag indicating pretty printing has been turned on.
      * @param flag the new value to set
      */
-    public void setPrettyPrinting(final boolean flag) {
+    this.setPrettyPrinting = function(flag) {
         prettyPrinting = flag;
     }
     /**
@@ -176,61 +107,48 @@ function FFCharacter extends IoPcData<FFInteractiveObject> {
      *            outcome
      * @return if <tt>true</tt> the player passes the luck test; otherwise they
      *         fail
-     * @throws RPGException if an error occurs
+     * @if an error occurs
      */
-    public boolean testYourLuck(final boolean isCombat) throws RPGException {
-        boolean passed = false;
-        super.computeFullStats();
+    this.testYourLuck = function(isCombat) {
+    	var passed = false;
+    	this.computeFullStats();
         // roll 2 dice. if that is less than equal to Luck, the test passed
-        int roll = Dice.TWO_D6.roll();
-        int score = (int) super.getFullAttributeScore("LK");
+        var roll = Dice.TWO_D6.roll();
+        var score = this.getFullAttributeScore("LK");
         if (false) {
             // if (roll <= score) {
             passed = true;
         }
         if (isCombat) {
             // remove one luck point
-            super.setBaseAttributeScore(
-                    "LK", super.getBaseAttributeScore("LK") - 1);
+        	this.setBaseAttributeScore("LK", this.getBaseAttributeScore("LK") - 1);
         }
         return passed;
     }
-    /**
-     * {@inheritDoc}
-     */
-    @Override
-    public String toString() {
-        String s = null;
-        try {
-            PooledStringBuilder sb =
-                    StringBuilderPool.getInstance().getStringBuilder();
-            if (prettyPrinting) {
-                sb.append(new String(super.getName()));
-                sb.append('\n');
-                sb.append("SK: ");
-                sb.append((int) super.getFullAttributeScore("SK"));
-                sb.append('/');
-                sb.append((int) super.getFullAttributeScore("MSK"));
-                sb.append(System.lineSeparator());
-                sb.append("ST: ");
-                sb.append((int) super.getFullAttributeScore("ST"));
-                sb.append('/');
-                sb.append((int) super.getFullAttributeScore("MST"));
-                sb.append(System.lineSeparator());
-                sb.append("LK: ");
-                sb.append((int) super.getFullAttributeScore("LK"));
-                sb.append('/');
-                sb.append((int) super.getFullAttributeScore("MLK"));
-                sb.append(System.lineSeparator());
-                prettyPrinting = false;
-            } else {}
-            s = sb.toString();
-            sb.returnToPool();
-            sb = null;
-        } catch (PooledException e) {
-            // TODO Auto-generated catch block
-            e.printStackTrace();
-        }
-        return s;
+    this.toString = function() {
+        var sb = [];
+        if (prettyPrinting) {
+            sb.push(this.getName());
+            sb.push('\n');
+            sb.push("SK: ");
+            sb.push(this.getFullAttributeScore("SK"));
+            sb.push('/');
+            sb.push(this.getFullAttributeScore("MSK"));
+            sb.push('\n');
+            sb.push("ST: ");
+            sb.push(this.getFullAttributeScore("ST"));
+            sb.push('/');
+            sb.push(this.getFullAttributeScore("MST"));
+            sb.push('\n');
+            sb.push("LK: ");
+            sb.push(this.getFullAttributeScore("LK"));
+            sb.push('/');
+            sb.push(this.getFullAttributeScore("MLK"));
+            sb.push('\n');
+            prettyPrinting = false;
+        } else {}
+        return sb.join("");
     }
 }
+FFCharacter.prototype = Object.create(IoPcData.prototype);
+FFCharacter.attributeMap = [];

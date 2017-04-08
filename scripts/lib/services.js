@@ -213,7 +213,7 @@ angular.module('restApp').factory('basicGenderService', function($http, $q) {
     return dataFactory;
 });
 
-angular.module('restApp').factory('basicItemService', function($http, $q) {
+angular.module('restApp').factory('itemService', function($http, $q) {
     var urlBase = [ httpBase, 'io_item_data' ].join("");
     var dataFactory = {};
 

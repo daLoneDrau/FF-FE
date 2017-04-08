@@ -305,8 +305,7 @@ function IoPcData() {
 	 * @throws PooledException if an error occurs
 	 * @if an error occurs
 	 */
-	this.ARX_EQUIPMENT_IsPlayerEquip(final IO itemIO)
-	        {
+	this.ARX_EQUIPMENT_IsPlayerEquip = function(itemIO) {
 		var isEquipped = false;
 		var i = ProjectConstants.getInstance().getMaxEquipped() - 1;
 		for (; i >= 0; i--) {
@@ -411,36 +410,6 @@ function IoPcData() {
 		return keyring[index];
 	}
 	/**
-	 * Gets the index of a specific key.
-	 * @param key the key's id.
-	 * @return {@link int}
-	 */
-	private int getKeyIndex = function(val) {
-		int index = -1;
-		if (keyring === null) {
-			keyring = new char[0][];
-		}
-		char[] keyCopy = new char[key.length];
-		System.arraycopy(key, 0, keyCopy, 0, key.length);
-		for (int i = keyCopy.length - 1; i >= 0; i--) {
-			keyCopy[i] = Character.toLowerCase(keyCopy[i]);
-		}
-		for (int i = keyring.length - 1; i >= 0; i--) {
-			char[] arrCopy = new char[keyring[i].length];
-			System.arraycopy(keyring[i], 0, arrCopy, 0, keyring[i].length);
-			for (int j = arrCopy.length - 1; j >= 0; j--) {
-				arrCopy[j] = Character.toLowerCase(arrCopy[j]);
-			}
-			if (Arrays.equals(keyCopy, arrCopy)) {
-				index = i;
-				break;
-			}
-			arrCopy = null;
-		}
-		keyCopy = null;
-		return index;
-	}
-	/**
 	 * Gets the {@link IoPcData}'s level.
 	 * @return int
 	 */
@@ -461,7 +430,7 @@ function IoPcData() {
 	 * Gets the value for the bags.
 	 * @return {@link int}
 	 */
-	public int getNumberOfBags = function() {
+	this.getNumberOfBags = function() {
 		return bags;
 	}
 	/**
@@ -506,36 +475,14 @@ function IoPcData() {
 	 * @return <tt>true</tt> if the PC has the key <tt>false></tt> otherwise
 	 */
 	this.hasKey = function(val) {
-		boolean hasKey = false;
+		if (typeof val !== "string") {
+			throw new Error("Argument must be a string");
+		}
 		if (keyring === null) {
-			keyring = new char[0][];
+			keyring = [];
 		}
-		char[] keyCopy = new char[key.length];
-		System.arraycopy(key, 0, keyCopy, 0, key.length);
-		for (int i = keyCopy.length - 1; i >= 0; i--) {
-			keyCopy[i] = Character.toLowerCase(keyCopy[i]);
-		}
-		for (int i = keyring.length - 1; i >= 0; i--) {
-			char[] arrCopy = new char[keyring[i].length];
-			System.arraycopy(keyring[i], 0, arrCopy, 0, keyring[i].length);
-			for (int j = arrCopy.length - 1; j >= 0; j--) {
-				arrCopy[j] = Character.toLowerCase(arrCopy[j]);
-			}
-			if (Arrays.equals(keyCopy, arrCopy)) {
-				hasKey = true;
-				break;
-			}
-		}
-		keyCopy = null;
-		return hasKey;
-	}
-	/**
-	 * Determines if the PC has a key in their keyring.
-	 * @param key the key's name
-	 * @return <tt>true</tt> if the PC has the key <tt>false></tt> otherwise
-	 */
-	this.hasKey = function(val) {
-		return hasKey(key.toCharArray());
+		var index = keyring.indexOf(val);
+		return index >= 0;
 	}
 	/**
 	 * Removes an interface flag.
@@ -549,24 +496,23 @@ function IoPcData() {
 	 * @param key the key's id
 	 */
 	this.removeKey = function(val) {
+		if (typeof val !== "string") {
+			throw new Error("Argument must be a string");
+		}
+		if (keyring === null) {
+			keyring = [];
+		}
 		var index = keyRing.indexOf(val);
 		if (index >= 0) {
-			keyring = ArrayUtilities.getInstance().removeIndex(index, keyring);
+			keyring.splice(index, 1);
 			numKeys--;
 		}
-	}
-	/**
-	 * Removes a key.
-	 * @param key the key's id
-	 */
-	this.removeKey = function(val) {
-		removeKey(key.toCharArray());
 	}
 	/**
 	 * Sets the {@link IoPcData}'s gender.
 	 * @param val the gender to set
 	 */
-	this.setGender(val) {
+	this.setGender = function(val) {
 		gender = val;
 		this.notifyWatchers();
 	}
@@ -585,7 +531,7 @@ function IoPcData() {
 	 * Sets the {@link IoPcData}'s level.
 	 * @param val the level to set
 	 */
-	this.setLevel(val) {
+	this.setLevel = function(val) {
 		level = val;
 		this.notifyWatchers();
 	}
@@ -593,16 +539,8 @@ function IoPcData() {
 	 * Sets the {@link IoPcData}'s name.
 	 * @param val the name to set
 	 */
-	this.setName = function(val)) {
-		name = val;
-		this.notifyWatchers();
-	}
-	/**
-	 * Sets the {@link IoPcData}'s name.
-	 * @param val the name to set
-	 */
 	this.setName = function(val) {
-		name = val.toCharArray();
+		name = val;
 		this.notifyWatchers();
 	}
 	/**

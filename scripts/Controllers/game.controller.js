@@ -4,7 +4,7 @@
 
 // scope syntax, not controller-as
 angular.module('restApp').controller('GameController', function($scope, $window,
-		equipmentSlotService, elementService,
+		equipmentSlotService, elementService, itemService,
 		/*basicAttributeService, basicElementService,*/ $q, $http) {
     $scope.newEntity = {
         name: "",
@@ -210,6 +210,16 @@ angular.module('restApp').controller('GameController', function($scope, $window,
         });
     };
     var init = function() {
+    	/** the list of attributes and their matching names and modifiers. */
+    	FFCharacter.attributeMap = [
+    	        [ "ST", "Stamina", FFEquipmentElements.valueOf("ELEMENT_STAMINA").getIndex() ],
+    	        [ "MST", "Max Stamina", FFEquipmentElements.valueOf("ELEMENT_MAX_STAMINA").getIndex() ],
+    	        [ "SK", "Skill", FFEquipmentElements.valueOf("ELEMENT_SKILL").getIndex() ],
+    	        [ "MSK", "Max Skill", FFEquipmentElements.valueOf("ELEMENT_MAX_SKILL").getIndex() ],
+    	        [ "LK", "Luck", FFEquipmentElements.valueOf("ELEMENT_LUCK").getIndex() ],
+    	        [ "MLK", "Max Luck",  FFEquipmentElements.valueOf("ELEMENT_MAX_LUCK").getIndex() ],
+    	        [ "DMG", "Damage", FFEquipmentElements.valueOf("ELEMENT_DAMAGE").getIndex() ]
+    	];
         var o = new FFController();
         ProjectConstants.setInstance(o);
         o = new FFInteractive();
