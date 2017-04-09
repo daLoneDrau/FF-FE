@@ -1,4 +1,8 @@
 function FFCharacter() {
+    this.getAttributeMap = function() {
+    	console.log(FFCharacter.attributeMap);
+        return FFCharacter.attributeMap;
+    }
 	IoPcData.call(this);
     /** flag indicating pretty printing has been turned on. */
     var prettyPrinting = false;
@@ -28,9 +32,6 @@ function FFCharacter() {
     this.canIdentifyEquipment = function(equipitem) {
         // TODO Auto-generated method stub
         return false;
-    }
-    this.getAttributeMap = function() {
-        return FFCharacter.attributeMap;
     }
     this.getBaseLife = function() {
         return this.getFullAttributeScore("ST");
@@ -78,14 +79,32 @@ function FFCharacter() {
         return false;
     }
     this.newHero = function() {
+    	var xmlhttp = new XMLHttpRequest();
+
+        xmlhttp.onreadystatechange = function() {
+            if (xmlhttp.readyState == XMLHttpRequest.DONE ) {
+               if (xmlhttp.status == 200) {
+                   console.log(xmlhttp);
+               }
+               else if (xmlhttp.status == 400) {
+            	   console.log('There was an error 400');
+               }
+               else {
+            	   console.log('something else other than 200 was returned');
+               }
+            }
+        };
+
+        xmlhttp.open("GET", "http://localhost:8080/FFService/ff/io_item_data/", true);
+        xmlhttp.send();
         // roll stats
-    	var roll = Dice.ONE_D6.roll() + 6;
+    	var roll = Dice.properties[Dice.ONE_D6].roll() + 6;
         this.setBaseAttributeScore("SK", roll);
         this.setBaseAttributeScore("MSK", roll);
-        roll = Dice.TWO_D6.roll() + 12;
+        roll = Dice.properties[Dice.TWO_D6].roll() + 12;
         this.setBaseAttributeScore("ST", roll);
         this.setBaseAttributeScore("MST", roll);
-        roll = Dice.ONE_D6.roll() + 6;
+        roll = Dice.properties[Dice.ONE_D6].roll() + 6;
         this.setBaseAttributeScore("LK", roll);
         this.setBaseAttributeScore("MLK", roll);
         // equip iron sword

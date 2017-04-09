@@ -3,6 +3,7 @@
  */
 function IOCharacter() {
     Watchable.call(this);
+    var self = this;
     /** the set of attributes defining the PC. */
     var attributes = {};
     /**
@@ -10,6 +11,28 @@ function IOCharacter() {
      * indexed by equipment slot.
      */
     var equippedItems = [];
+    /**
+     * Defines the PC's attributes.
+     * @if an error occurs
+     */
+    var defineAttributes = function() {
+        attributes = {};
+        var map = self.getAttributeMap();
+        for (var i = map.length - 1; i >= 0; i--) {
+            attributes[map[i][0]] = new Attribute(map[i][0], map[i][1]);
+        }
+        map = null;
+    }
+    /**
+     * Initializes the items the {@link IOCharacter} has equipped.
+     * @param total the total number of equipment slots
+     */
+    var initEquippedItems = function(total) {
+        equippedItems = [];
+        for (var i = 0; i < equippedItems.length; i++) {
+            equippedItems.push(-1);
+        }
+    }
     defineAttributes();
     initEquippedItems(ProjectConstants.getInstance().getMaxEquipped());
     /**
@@ -160,18 +183,6 @@ function IOCharacter() {
         this.applyRulesPercentModifiers();
     }
     /**
-     * Defines the PC's attributes.
-     * @if an error occurs
-     */
-    var defineAttributes = function() {
-        attributes = {};
-        var map = getAttributeMap();
-        for (var i = map.length - 1; i >= 0; i--) {
-            attributes[map[i][0]] = new Attribute(map[i][0], map[i][1]);
-        }
-        map = null;
-    }
-    /**
      * Gets a specific attribute.
      * @param abbr the attribute's abbreviation
      * @return {@link Attribute}
@@ -236,16 +247,6 @@ function IOCharacter() {
      */
     this.getFullAttributeScore = function(attr) {
         return attributes[attr].getFull();
-    }
-    /**
-     * Initializes the items the {@link IOCharacter} has equipped.
-     * @param total the total number of equipment slots
-     */
-    var initEquippedItems = function(total) {
-        equippedItems = [];
-        for (var i = 0; i < equippedItems.length; i++) {
-            equippedItems.push(-1);
-        }
     }
     /**
      * Sets the base attribute score for a specific attribute.

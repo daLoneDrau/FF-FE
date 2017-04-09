@@ -103,7 +103,6 @@ function FFInteractive() {
      */
    this.newHero = function() {
 	   console.log("newHero");
-	   console.log(itemService);
 	   var io = getNewIO();
 	   io.addIOFlag(IoGlobals.IO_01_PC);
 	   io.setPCData(new FFCharacter());

@@ -521,10 +521,10 @@ function IoPcData() {
 	 * @param newIO the IO to set
 	 */
 	this.setIo = function(val) {
-		io = newIO;
-		if (newIO !== null
-		        && newIO.getPCData() === null) {
-			newIO.setPCData(this);
+		io = val;
+		if (val !== null
+		        && val.getPCData() === null) {
+			val.setPCData(this);
 		}
 	}
 	/**
