@@ -3,8 +3,8 @@ function IOEquipItem() {
     /** the list of equipment modifiers. */
     var elements = [];
     var numElements =
-			ProjectConstants.getInstance().getNumberEquipmentElements();
-    for (var i = 0; i < elements.length; i++) {
+			ProjectConstants.getInstance().getNumberEquipmentElements();  
+    for (var i = 0; i < numElements; i++) {
         elements.push(new EquipmentItemModifier());
     }
 	/** Frees all resources. */

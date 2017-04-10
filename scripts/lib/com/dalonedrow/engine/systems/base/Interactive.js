@@ -292,9 +292,8 @@ function Interactive() {
      * @param ioid the IO's id
      * @throws RPGException if an error occurs
      */
-    this.releaseIO = function(io) {
-        if (parseInt(io) === parseInt(io)
-                || parseInt(w) !== parseInt(w)) {
+    this.releaseIO = function(ioid) {
+        if (parseInt(ioid) === parseInt(ioid)) {
             io = getIO(io);
         }
         if (io !== null) {

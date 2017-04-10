@@ -183,22 +183,22 @@ function BaseInteractiveObject(id) {
             throw new Error(s.join(""));
         }
         switch (flag) {
-            case ObjectType.OBJECT_TYPE_DAGGER:
-            case ObjectType.OBJECT_TYPE_1H:
-            case ObjectType.OBJECT_TYPE_2H:
-            case ObjectType.OBJECT_TYPE_BOW:
+            case EquipmentGlobals.OBJECT_TYPE_DAGGER:
+            case EquipmentGlobals.OBJECT_TYPE_1H:
+            case EquipmentGlobals.OBJECT_TYPE_2H:
+            case EquipmentGlobals.OBJECT_TYPE_BOW:
                 this.clearTypeFlags();
-                typeFlags |= ObjectType.OBJECT_TYPE_WEAPON;
+                typeFlags |= EquipmentGlobals.OBJECT_TYPE_WEAPON;
                 this.addIOFlag(IoGlobals.IO_02_ITEM);
                 break;
-            case ObjectType.OBJECT_TYPE_SHIELD:
-            case ObjectType.OBJECT_TYPE_ARMOR:
-            case ObjectType.OBJECT_TYPE_HELMET:
-            case ObjectType.OBJECT_TYPE_LEGGINGS:
-            case ObjectType.OBJECT_TYPE_RING:
+            case EquipmentGlobals.OBJECT_TYPE_SHIELD:
+            case EquipmentGlobals.OBJECT_TYPE_ARMOR:
+            case EquipmentGlobals.OBJECT_TYPE_HELMET:
+            case EquipmentGlobals.OBJECT_TYPE_LEGGINGS:
+            case EquipmentGlobals.OBJECT_TYPE_RING:
                 this.addIOFlag(IoGlobals.IO_02_ITEM);
-            case ObjectType.OBJECT_TYPE_FOOD:
-            case ObjectType.OBJECT_TYPE_GOLD:
+            case EquipmentGlobals.OBJECT_TYPE_FOOD:
+            case EquipmentGlobals.OBJECT_TYPE_GOLD:
                 this.clearTypeFlags();
                 break;
             case EquipmentGlobals.OBJECT_TYPE_WEAPON:

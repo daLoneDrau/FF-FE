@@ -341,7 +341,7 @@ function Script() {
      */
     this.getGlobalFloatVariableValue = function(name) {
         if (gvars === null) {
-            gvars = new ScriptVariable[0];
+            gvars = [];
         }
         var index = -1;
         for (var i = 0; i < gvars.length; i++) {
@@ -365,7 +365,7 @@ function Script() {
      */
     this.getGlobalIntArrayVariableValue = function(name) {
         if (gvars === null) {
-            gvars = new ScriptVariable[0];
+            gvars = [];
         }
         var index = -1;
         for (var i = 0; i < gvars.length; i++) {
@@ -389,7 +389,7 @@ function Script() {
      */
     this.getGlobalIntVariableValue = function(name) {
         if (gvars === null) {
-            gvars = new ScriptVariable[0];
+            gvars = [];
         }
         var index = -1;
         for (var i = 0; i < gvars.length; i++) {
@@ -413,7 +413,7 @@ function Script() {
      */
     this.getGlobalLongArrayVariableValue = function(name) {
         if (gvars === null) {
-            gvars = new ScriptVariable[0];
+            gvars = [];
         }
         var index = -1;
         for (var i = 0; i < gvars.length; i++) {
@@ -437,7 +437,7 @@ function Script() {
      */
     this.getGlobalLongVariableValue = function(name) {
         if (gvars === null) {
-            gvars = new ScriptVariable[0];
+            gvars = [];
         }
         var index = -1;
         for (var i = 0; i < gvars.length; i++) {
@@ -461,7 +461,7 @@ function Script() {
      */
     this.getGlobalStringArrayVariableValue = function(name) {
         if (gvars === null) {
-            gvars = new ScriptVariable[0];
+            gvars = [];
         }
         var index = -1;
         for (var i = 0; i < gvars.length; i++) {
@@ -485,7 +485,7 @@ function Script() {
      */
     this.getGlobalStringVariableValue = function(name) {
         if (gvars === null) {
-            gvars = new ScriptVariable[0];
+            gvars = [];
         }
         var index = -1;
         for (var i = 0; i < gvars.length; i++) {
@@ -1500,7 +1500,7 @@ function Script() {
      */
     this.setGlobalVariable = function(name, value) {
         if (gvars === null) {
-            gvars = new ScriptVariable[0];
+            gvars = [];
         }
         var found = false;
         for (var i = gvars.length - 1; i >= 0; i--) {

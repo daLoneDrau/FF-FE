@@ -79,24 +79,9 @@ function FFCharacter() {
         return false;
     }
     this.newHero = function() {
-    	var xmlhttp = new XMLHttpRequest();
-
-        xmlhttp.onreadystatechange = function() {
-            if (xmlhttp.readyState == XMLHttpRequest.DONE ) {
-               if (xmlhttp.status == 200) {
-                   console.log(xmlhttp);
-               }
-               else if (xmlhttp.status == 400) {
-            	   console.log('There was an error 400');
-               }
-               else {
-            	   console.log('something else other than 200 was returned');
-               }
-            }
-        };
-
-        xmlhttp.open("GET", "http://localhost:8080/FFService/ff/io_item_data/", true);
-        xmlhttp.send();
+    	var t = Interactive.getInstance().loadItem("IRON SWORD");
+        console.log("after send");
+        console.log(t);
         // roll stats
     	var roll = Dice.properties[Dice.ONE_D6].roll() + 6;
         this.setBaseAttributeScore("SK", roll);

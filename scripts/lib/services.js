@@ -69,7 +69,7 @@ angular.module('restApp').factory('elementService', function($http, $q) {
     return dataFactory;
 });
 
-angular.module('restApp').factory('basicModifierService', function($http, $q) {
+angular.module('restApp').factory('modifierService', function($http, $q) {
     var urlBase = [ httpBase, 'equipment_item_modifiers' ].join("");
     var dataFactory = {};
 
@@ -96,6 +96,33 @@ angular.module('restApp').factory('basicModifierService', function($http, $q) {
     };
     dataFactory.deleteEntity = function (id) {
         return $http.delete(urlBase + '/' + id);
+    };
+    return dataFactory;
+});
+
+angular.module('restApp').factory('modifierSynchronousService', function($http, $q) {
+    var urlBase = [ httpBase, 'equipment_item_modifiers' ].join("");
+    var dataFactory = {};
+    dataFactory.getEntityByCode = function (code) {
+    	var u = [urlBase , '/code/', code].join("");
+    	var xmlhttp = new XMLHttpRequest();
+        xmlhttp.onreadystatechange = function() {
+            if (xmlhttp.readyState == XMLHttpRequest.DONE ) {
+               if (xmlhttp.status == 200) {
+                   console.log(xmlhttp);
+                   console.log(xmlhttp.responseText);
+               }
+               else if (xmlhttp.status == 400) {
+            	   console.log('There was an error 400');
+               }
+               else {
+            	   console.log('something else other than 200 was returned');
+               }
+            }
+        };
+        xmlhttp.open("GET", u, false);
+        xmlhttp.send();
+        return xmlhttp.responseText;
     };
     return dataFactory;
 });
@@ -240,6 +267,33 @@ angular.module('restApp').factory('itemService', function($http, $q) {
     };
     dataFactory.deleteEntity = function (id) {
         return $http.delete(urlBase + '/' + id);
+    };
+    return dataFactory;
+});
+
+angular.module('restApp').factory('itemSynchronousService', function($http, $q) {
+    var urlBase = [ httpBase, 'io_item_data' ].join("");
+    var dataFactory = {};
+    dataFactory.getEntityByName = function (name) {
+    	var u = [urlBase , '/name/', name].join("");
+    	var xmlhttp = new XMLHttpRequest();
+        xmlhttp.onreadystatechange = function() {
+            if (xmlhttp.readyState == XMLHttpRequest.DONE ) {
+               if (xmlhttp.status == 200) {
+                   console.log(xmlhttp);
+                   console.log(xmlhttp.responseText);
+               }
+               else if (xmlhttp.status == 400) {
+            	   console.log('There was an error 400');
+               }
+               else {
+            	   console.log('something else other than 200 was returned');
+               }
+            }
+        };
+        xmlhttp.open("GET", u, false);
+        xmlhttp.send();
+        return xmlhttp.responseText;
     };
     return dataFactory;
 });

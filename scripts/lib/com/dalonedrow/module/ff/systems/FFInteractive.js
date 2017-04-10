@@ -97,6 +97,109 @@ function FFInteractive() {
         return io;
     }
     /**
+     * Loads an item by its name.
+     * @param itemName the item's name
+     * @return {@link FFInteractiveObject}
+     * @throws RPGException if an error occurs
+     */
+    this.getModifierByCode = function(name) {
+        var modifier = new EquipmentItemModifier();
+    	var obj = JSON.parse(Interactive.getInstance().modifierSynchronousService.getEntityByCode(
+    			name));
+    	obj = obj[0];
+    	modifier.setPercentage(obj.percent);
+    	modifier.setValue(obj.value);
+    	obj = null;
+    	return modifier;
+    }
+    /**
+     * Loads an item by its name.
+     * @param itemName the item's name
+     * @return {@link FFInteractiveObject}
+     * @throws RPGException if an error occurs
+     */
+    this.loadItem = function(itemName) {
+        var io = this.newItem();
+        var itemData = new FFItem();
+        io.setItemData(itemData);
+    	var obj = JSON.parse(Interactive.getInstance().itemSynchronousService.getEntityByName(
+    			"IRON SWORD"));
+    	obj = obj[0];
+        // *************************************************
+        // weight
+        // *************************************************
+        if (obj.weight !== undefined) {
+            itemData.setWeight(obj.weight);
+        } else {
+            itemData.setWeight(0);
+        }
+        // *************************************************
+        // stack_size
+        // *************************************************
+        if (obj.stack_size !== undefined) {
+            itemData.setStackSize(obj.stack_size);
+        } else {
+            itemData.setStackSize(1);
+        }
+        // *************************************************
+        // name
+        // *************************************************
+        itemData.setItemName(obj.name);
+        // *************************************************
+        // title
+        // *************************************************
+        itemData.setTitle(obj.title);
+        // *************************************************
+        // max_owned
+        // *************************************************
+        if (obj.max_owned !== undefined) {
+            itemData.setMaxOwned(obj.max_owned);
+        } else {
+            itemData.setMaxOwned(1);
+        }
+        // *************************************************
+        // description
+        // *************************************************
+        itemData.setDescription(obj.description);
+        // *************************************************
+        // types
+        // *************************************************
+        if (obj.types !== undefined) {
+        	for (var i = obj.types.length - 1; i >= 0; i--) {
+                itemData.ARX_EQUIPMENT_SetObjectType(obj.types[i].flag, true);        		
+        	}
+        }
+        // *************************************************
+        // modifiers
+        // *************************************************
+        if (obj.modifiers !== undefined) {
+        	for (var i in obj.modifiers) {
+                var elementIndex =
+                    FFEquipmentElements.valueOf(i).getIndex();
+                console.log(elementIndex);
+                itemData.getEquipitem().getElement(elementIndex).set(
+                		this.getModifierByCode(obj.modifiers[i]));
+        		
+        	}
+        	
+        }
+        // *************************************************
+        // internal_script
+        // *************************************************
+        console.log(obj.internal_script);
+        io.setScript(new window[obj.internal_script]());
+        // *************************************************
+        // groups
+        // *************************************************
+        if (obj.groups !== undefined) {
+        	for (var i = obj.groups.length - 1; i >= 0; i--) {
+        		io.addGroup(obj.groups[i].name);
+        	}
+        }
+        Script.getInstance().sendInitScriptEvent(io);
+        return io;
+    }
+    /**
      * Gets a new Player IO.
      * @return {@link FFInteractiveObject}
      * @throws RPGException

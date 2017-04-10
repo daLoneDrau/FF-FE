@@ -4,7 +4,8 @@
 
 // scope syntax, not controller-as
 angular.module('restApp').controller('GameController', function($scope, $window,
-		equipmentSlotService, elementService, itemService,
+		equipmentSlotService, elementService, itemService, itemSynchronousService,
+		modifierSynchronousService,
 		/*basicAttributeService, basicElementService,*/ $q, $http) {
     $scope.newEntity = {
         name: "",
@@ -223,7 +224,10 @@ angular.module('restApp').controller('GameController', function($scope, $window,
         var o = new FFController();
         ProjectConstants.setInstance(o);
         o = new FFInteractive();
+        console.log(o);
         Interactive.setInstance(o);
+        Interactive.getInstance().itemSynchronousService = itemSynchronousService;
+        Interactive.getInstance().modifierSynchronousService = modifierSynchronousService;
         o = new FFScript();
         Script.setInstance(o);
         o = new FFSpeech();
