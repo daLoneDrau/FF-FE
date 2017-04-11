@@ -7,7 +7,7 @@ angular.module('restApp', ["ngRoute"]);
 angular.module('restApp').config(function($routeProvider) {
     $routeProvider.when("/", {
         controller: "GameController",
-        templateUrl: 'main'
+        templateUrl: 'inv'
     });                                 
 });
 

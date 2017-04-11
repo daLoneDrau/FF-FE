@@ -24,6 +24,9 @@ function FFController() {
     this.getNumberEquipmentElements = function() {
         return FFEquipmentElements.getNumberOfValues();
     }
+    this.getNumberInventorySlots = function() {
+        return 16;
+    }
     this.getPlayer = function() {
         return playerId;
     }

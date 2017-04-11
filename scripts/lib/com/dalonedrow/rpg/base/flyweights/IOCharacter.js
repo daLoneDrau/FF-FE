@@ -29,7 +29,7 @@ function IOCharacter() {
      */
     var initEquippedItems = function(total) {
         equippedItems = [];
-        for (var i = 0; i < equippedItems.length; i++) {
+        for (var i = 0; i < total; i++) {
             equippedItems.push(-1);
         }
     }
@@ -166,7 +166,7 @@ function IOCharacter() {
         // clear mods
         this.clearModAbilityScores();
         // apply equipment modifiers
-        var map = getAttributeMap();
+        var map = this.getAttributeMap();
         for (var i = map.length - 1; i >= 0; i--) {
         	this.adjustAttributeModifier(map[i][0], this.ARX_EQUIPMENT_Apply(map[i][2]));
         }
@@ -189,9 +189,6 @@ function IOCharacter() {
      */
     this.getAttribute = function(abbr) {
         return attributes[abbr];
-    }
-    this.getAttributeMap = function() {
-    	
     }
     /**
      * Gets the attribute modifier for a specific attribute.

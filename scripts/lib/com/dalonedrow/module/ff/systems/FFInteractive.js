@@ -176,7 +176,6 @@ function FFInteractive() {
         	for (var i in obj.modifiers) {
                 var elementIndex =
                     FFEquipmentElements.valueOf(i).getIndex();
-                console.log(elementIndex);
                 itemData.getEquipitem().getElement(elementIndex).set(
                 		this.getModifierByCode(obj.modifiers[i]));
         		
@@ -186,7 +185,6 @@ function FFInteractive() {
         // *************************************************
         // internal_script
         // *************************************************
-        console.log(obj.internal_script);
         io.setScript(new window[obj.internal_script]());
         // *************************************************
         // groups
@@ -205,7 +203,6 @@ function FFInteractive() {
      * @throws RPGException
      */
    this.newHero = function() {
-	   console.log("newHero");
 	   var io = getNewIO();
 	   io.addIOFlag(IoGlobals.IO_01_PC);
 	   io.setPCData(new FFCharacter());

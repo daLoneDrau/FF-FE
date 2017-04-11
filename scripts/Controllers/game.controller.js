@@ -163,8 +163,6 @@ angular.module('restApp').controller('GameController', function($scope, $window,
     var getElementEntity = function(code) {        
         var promise = basicElementService.getByCode(code);
         promise.then(function(response) {
-            console.log("GET::");
-            console.log(response);
             if (response.status === 200) {
                 $scope.associatedElement = response.data;
             }
@@ -173,8 +171,6 @@ angular.module('restApp').controller('GameController', function($scope, $window,
     var loadAll = function() {
         var promise1 = equipmentSlotService.getEntities();
         promise1.then(function(response) {
-            console.log("GET::");
-            console.log(response);
             if (response.status === 200) {
                 var list = response.data;
                 for (var i = list.length - 1; i >= 0; i--) {
@@ -190,8 +186,6 @@ angular.module('restApp').controller('GameController', function($scope, $window,
         });
         var promise2 = elementService.getEntities();
         promise2.then(function(response) {
-            console.log("GET::");
-            console.log(response);
             if (response.status === 200) {
                 var list = response.data;
                 for (var i = list.length - 1; i >= 0; i--) {
@@ -224,7 +218,6 @@ angular.module('restApp').controller('GameController', function($scope, $window,
         var o = new FFController();
         ProjectConstants.setInstance(o);
         o = new FFInteractive();
-        console.log(o);
         Interactive.setInstance(o);
         Interactive.getInstance().itemSynchronousService = itemSynchronousService;
         Interactive.getInstance().modifierSynchronousService = modifierSynchronousService;

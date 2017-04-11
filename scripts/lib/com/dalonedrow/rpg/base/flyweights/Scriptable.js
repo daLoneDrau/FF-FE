@@ -4,23 +4,20 @@
 function Scriptable(ioInstance) {
     Hashcode.call(this);
     /** bit flag storing which events are allowed. */
-    var allowedEvent;
+    var allowedEvent = 0;
     /** the list of actions for an event. */
-    var eventActions;
+    var eventActions = {};
     /** the IO associated with this script. */
-    var io;
+    var io = ioInstance;
     /** the array of local {@link ScriptVariable}s. */
-    var lvar;
+    var lvar = [];
     /** the master script. */
-    var master;
+    var master = null;
     /** the list of script timers. */
     var timers = [];
-    for (var i = ScriptConstants.MAX_SCRIPTTIMERS - 1; i >= 0; i--) {
+    for (var i = ScriptGlobals.MAX_SCRIPTTIMERS - 1; i >= 0; i--) {
     	timers.push(0);
     }
-    lvar = [];
-    eventActions = {};
-    io = ioInstance;
     /**
      * Adds a local variable.
      * @param svar the local variable
@@ -417,7 +414,7 @@ function Scriptable(ioInstance) {
                 return;
             }
         }
-        if (io.getTargetinfo() === ScriptConstants.TARGET_PATH) {
+        if (io.getTargetinfo() === ScriptGlobals.TARGET_PATH) {
             // if (io->usepath === NULL)
             // {
             // io->target.x = io->pos.x;
@@ -448,13 +445,13 @@ function Scriptable(ioInstance) {
             // return;
         }
 
-        if (io.getTargetinfo() === ScriptConstants.TARGET_NONE) {
+        if (io.getTargetinfo() === ScriptGlobals.TARGET_NONE) {
             io.getTarget().setX(io.getPosition().getX());
             io.getTarget().setY(io.getPosition().getY());
             io.getTarget().setZ(0);
             return;
         }
-        if (io.getTargetinfo() === ScriptConstants.TARGET_PLAYER
+        if (io.getTargetinfo() === ScriptGlobals.TARGET_PLAYER
                 || io.getTargetinfo() === -1) {
         	var player = Interactive.getInstance().getIO(
         			ProjectConstants.getInstance().getPlayer());
@@ -548,7 +545,7 @@ function Scriptable(ioInstance) {
      * @when an error occurs
      */
     this.onAddToParty = function() {
-        return ScriptConstants.ACCEPT;
+        return ScriptGlobals.ACCEPT;
     }
     /**
      * Script run when the {@link Scriptable} is a target of aggression.
@@ -556,13 +553,13 @@ function Scriptable(ioInstance) {
      * @when an error occurs
      */
     this.onAggression = function() {
-        return ScriptConstants.ACCEPT;
+        return ScriptGlobals.ACCEPT;
     }
     this.onAttackPlayer = function() {
-        return ScriptConstants.ACCEPT;
+        return ScriptGlobals.ACCEPT;
     }
     this.onCallHelp = function() {
-        return ScriptConstants.ACCEPT;
+        return ScriptGlobals.ACCEPT;
     }
     /**
      * On IO chat start.
@@ -570,19 +567,19 @@ function Scriptable(ioInstance) {
      * @if an error occurs
      */
     this.onChat = function() {
-        return ScriptConstants.ACCEPT;
+        return ScriptGlobals.ACCEPT;
     }
     this.onCheatDie = function() {
-        return ScriptConstants.ACCEPT;
+        return ScriptGlobals.ACCEPT;
     }
     this.onCollideDoor = function() {
-        return ScriptConstants.ACCEPT;
+        return ScriptGlobals.ACCEPT;
     }
     this.onCollideNPC = function() {
-        return ScriptConstants.ACCEPT;
+        return ScriptGlobals.ACCEPT;
     }
     this.onCollisionError = function() {
-        return ScriptConstants.ACCEPT;
+        return ScriptGlobals.ACCEPT;
     }
     /**
      * On IO combine.
@@ -590,19 +587,19 @@ function Scriptable(ioInstance) {
      * @if an error occurs
      */
     this.onCombine = function() {
-        return ScriptConstants.ACCEPT;
+        return ScriptGlobals.ACCEPT;
     }
     this.onControlsOff = function() {
-        return ScriptConstants.ACCEPT;
+        return ScriptGlobals.ACCEPT;
     }
     this.onControlsOn = function() {
-        return ScriptConstants.ACCEPT;
+        return ScriptGlobals.ACCEPT;
     }
     this.onDelation = function() {
-        return ScriptConstants.ACCEPT;
+        return ScriptGlobals.ACCEPT;
     }
     this.onDetectPlayer = function() {
-        return ScriptConstants.ACCEPT;
+        return ScriptGlobals.ACCEPT;
     }
     /**
      * On IO dies.
@@ -610,10 +607,10 @@ function Scriptable(ioInstance) {
      * @if an error occurs
      */
     this.onDie = function() {
-        return ScriptConstants.ACCEPT;
+        return ScriptGlobals.ACCEPT;
     }
     this.onDoorLocked = function() {
-        return ScriptConstants.ACCEPT;
+        return ScriptGlobals.ACCEPT;
     }
     /**
      * On IO equipped.
@@ -621,16 +618,16 @@ function Scriptable(ioInstance) {
      * @if an error occurs
      */
     this.onEquip = function() {
-        return ScriptConstants.ACCEPT;
+        return ScriptGlobals.ACCEPT;
     }
     this.onFleeEnd = function() {
-        return ScriptConstants.ACCEPT;
+        return ScriptGlobals.ACCEPT;
     }
     this.onGameReady = function() {
-        return ScriptConstants.ACCEPT;
+        return ScriptGlobals.ACCEPT;
     }
     this.onHear = function() {
-        return ScriptConstants.ACCEPT;
+        return ScriptGlobals.ACCEPT;
     }
     /**
      * On IO hit.
@@ -638,7 +635,7 @@ function Scriptable(ioInstance) {
      * @if an error occurs
      */
     this.onHit = function() {
-        return ScriptConstants.ACCEPT;
+        return ScriptGlobals.ACCEPT;
     }
     /**
      * On IO attempt to identify.
@@ -646,7 +643,7 @@ function Scriptable(ioInstance) {
      * @if an error occurs
      */
     this.onIdentify = function() {
-        return ScriptConstants.ACCEPT;
+        return ScriptGlobals.ACCEPT;
     }
     /**
      * On IO initialization.
@@ -654,7 +651,7 @@ function Scriptable(ioInstance) {
      * @if an error occurs
      */
     this.onInit = function() {
-        return ScriptConstants.ACCEPT;
+        return ScriptGlobals.ACCEPT;
     }
     /**
      * On IO initialization end.
@@ -662,7 +659,7 @@ function Scriptable(ioInstance) {
      * @if an error occurs
      */
     this.onInitEnd = function() {
-        return ScriptConstants.ACCEPT;
+        return ScriptGlobals.ACCEPT;
     }
     /**
      * On IO closes inventory.
@@ -670,7 +667,7 @@ function Scriptable(ioInstance) {
      * @if an error occurs
      */
     this.onInventoryClose = function() {
-        return ScriptConstants.ACCEPT;
+        return ScriptGlobals.ACCEPT;
     }
     /**
      * On IO goes into inventory.
@@ -678,7 +675,7 @@ function Scriptable(ioInstance) {
      * @if an error occurs
      */
     this.onInventoryIn = function() {
-        return ScriptConstants.ACCEPT;
+        return ScriptGlobals.ACCEPT;
     }
     /**
      * On IO opens inventory.
@@ -686,7 +683,7 @@ function Scriptable(ioInstance) {
      * @if an error occurs
      */
     this.onInventoryOpen = function() {
-        return ScriptConstants.ACCEPT;
+        return ScriptGlobals.ACCEPT;
     }
     /**
      * On IO comes out of inventory.
@@ -694,7 +691,7 @@ function Scriptable(ioInstance) {
      * @if an error occurs
      */
     this.onInventoryOut = function() {
-        return ScriptConstants.ACCEPT;
+        return ScriptGlobals.ACCEPT;
     }
     /**
      * On IO is used inside inventory.
@@ -702,16 +699,16 @@ function Scriptable(ioInstance) {
      * @if an error occurs
      */
     this.onInventoryUse = function() {
-        return ScriptConstants.ACCEPT;
+        return ScriptGlobals.ACCEPT;
     }
     this.onLoad = function() {
-        return ScriptConstants.ACCEPT;
+        return ScriptGlobals.ACCEPT;
     }
     this.onLookFor = function() {
-        return ScriptConstants.ACCEPT;
+        return ScriptGlobals.ACCEPT;
     }
     this.onLookMe = function() {
-        return ScriptConstants.ACCEPT;
+        return ScriptGlobals.ACCEPT;
     }
     /**
      * On IO traveling on the game map.
@@ -719,7 +716,7 @@ function Scriptable(ioInstance) {
      * @if an error occurs
      */
     this.onMovement = function() {
-        return ScriptConstants.ACCEPT;
+        return ScriptGlobals.ACCEPT;
     }
     /**
      * On IO ouch.
@@ -727,16 +724,16 @@ function Scriptable(ioInstance) {
      * @if an error occurs
      */
     this.onOuch = function() {
-        return ScriptConstants.ACCEPT;
+        return ScriptGlobals.ACCEPT;
     }
     this.onPlayerEnemy = function() {
-        return ScriptConstants.ACCEPT;
+        return ScriptGlobals.ACCEPT;
     }
     this.onReachedTarget = function() {
-        return ScriptConstants.ACCEPT;
+        return ScriptGlobals.ACCEPT;
     }
     this.onReload = function() {
-        return ScriptConstants.ACCEPT;
+        return ScriptGlobals.ACCEPT;
     }
     /**
      * Causes an NPC to
@@ -744,13 +741,13 @@ function Scriptable(ioInstance) {
      * @throws RPGException
      */
     this.onSpeakNoRepeat = function() {
-        return ScriptConstants.ACCEPT;
+        return ScriptGlobals.ACCEPT;
     }
     this.onSpellcast = function() {
-        return ScriptConstants.ACCEPT;
+        return ScriptGlobals.ACCEPT;
     }
     this.onSteal = function() {
-        return ScriptConstants.ACCEPT;
+        return ScriptGlobals.ACCEPT;
     }
     /**
      * On IO successfully strikes a target.
@@ -758,13 +755,13 @@ function Scriptable(ioInstance) {
      * @if an error occurs
      */
     this.onStrike = function() {
-        return ScriptConstants.ACCEPT;
+        return ScriptGlobals.ACCEPT;
     }
     this.onTargetDeath = function() {
-        return ScriptConstants.ACCEPT;
+        return ScriptGlobals.ACCEPT;
     }
     this.onUndetectPlayer = function() {
-        return ScriptConstants.ACCEPT;
+        return ScriptGlobals.ACCEPT;
     }
     /**
      * On IO unequipped.
@@ -772,7 +769,7 @@ function Scriptable(ioInstance) {
      * @if an error occurs
      */
     this.onUnequip = function() {
-        return ScriptConstants.ACCEPT;
+        return ScriptGlobals.ACCEPT;
     }
     /**
      * Removed an event from the list of allowed events.
@@ -797,24 +794,77 @@ function Scriptable(ioInstance) {
      */
     this.setLocalVariable = function() {
     	if (arguments.length === 2) {
-	        // if the index number is valid
-	        if (arguments[0] >= 0) {
-	        	for (var i = 0; i < arguments[0] + 1; i++) {
-	        		if (i >= lvar.length) {
-	        			lvar.push(null);
-	        		}
-	        	}
-	            lvar[arguments[0]] = arguments[1];
-	        } else {
-	            throw new Error(["Invalid array index ", arguments[0], "."].join(""));
-	        }
+    		if (parseInt(arguments[0]) === parseInt(arguments[0])) {
+		        // if the index number is valid
+		        if (arguments[0] >= 0) {
+		        	for (var i = 0; i < arguments[0] + 1; i++) {
+		        		if (i >= lvar.length) {
+		        			lvar.push(null);
+		        		}
+		        	}
+		            lvar[arguments[0]] = arguments[1];
+		        } else {
+		            throw new Error(["Invalid array index ", arguments[0], "."].join(""));
+		        }
+    		} else {
+    	        if (lvar === null) {
+    	            lvar = [];
+    	        }
+    	        var found = false;
+    	        for (var i = lvar.length - 1; i >= 0; i--) {
+    	            var vari = lvar[i];
+    	            if (vari !== null
+    	                    && vari.getName() !== null
+    	                    && vari.getName().toLowerCase() === name.toLowerCase()) {
+    	                // found the correct script variable
+    	                vari.set(value);
+    	                found = true;
+    	                break;
+    	            }
+    	        }
+    	        if (!found) {
+    	            // create a new variable and add to the global array
+    	            var vari = null;
+    	            if (typeof arguments[1] === 'string') {
+    	                vari = new ScriptVariable(arguments[0], ScriptGlobals.TYPE_L_08_TEXT, arguments[1]);
+    	            } else if (typeof arguments[1] === 'number') {
+    	            	if ((arguments[1] | 0) === arguments[1]) {
+    	                    vari = new ScriptVariable(arguments[0], ScriptGlobals.TYPE_L_12_INT, arguments[1]);
+    	            	} else if (arguments[1] % 1 === 0) {
+    	                    vari = new ScriptVariable(arguments[0], ScriptGlobals.TYPE_L_14_LONG, arguments[1]);
+    	            	} else {
+    	                    vari = new ScriptVariable(arguments[0], ScriptGlobals.TYPE_L_10_FLOAT, arguments[1]);
+    	            	}
+    	            } else if (Array.isArray(arguments[1])) {
+    	                if (typeof arguments[1][0] === 'string') {
+    	                    vari = new ScriptVariable(arguments[0], ScriptGlobals.TYPE_L_09_TEXT_ARR, arguments[1]);
+    	                } else if (typeof arguments[1][0] === 'number') {
+    	                	if ((arguments[1][0] | 0) === arguments[1][0]) {
+    	                        vari = new ScriptVariable(arguments[0], ScriptGlobals.TYPE_L_13_INT_ARR, arguments[1]);
+    	                	} else if (arguments[1][0] % 1 === 0) {
+    	                        vari = new ScriptVariable(arguments[0], ScriptGlobals.TYPE_L_15_LONG_ARR, arguments[1]);
+    	                	} else {
+    	                        vari = new ScriptVariable(arguments[0], ScriptGlobals.TYPE_L_11_FLOAT_ARR, arguments[1]);
+    	                	}
+    	                }
+    	            } else {
+    	                var sb = [];
+    	                sb.push("Local variable ");
+    	                sb.push(name);
+    	                sb.push(" was passed unrecognized value. Only String, String[], Float, ");
+    	                sb.push("float[], Integer, int[], Long, or long[] allowed.");
+    	                throw new Error(sb.join(""));
+    	            }
+    	            lvar.push(vari);
+    	        }
+    		}
     	} else {
             if (arguments[0] !== null) {
                 var found = false;
                 for (var i = lvar.length - 1; i >= 0; i--) {
                     if (lvar[i] !== null
                             && lvar[i].getName() !== null
-                            && lvar[i].getName() === arguments[0].getName())) {
+                            && lvar[i].getName() === arguments[0].getName()) {
                         lvar[i] = arguments[0];
                         found = true;
                         break;
@@ -839,106 +889,33 @@ function Scriptable(ioInstance) {
     	}
     }
     /**
-     * Sets a global variable.
-     * @param name the name of the global variable
-     * @param value the variable's value
-     * @if an error occurs
-     */
-    this.setLocalVariable = function(final String name, final Object value) {
-        boolean found = false;
-        for (int i = 0, len = lvar.length; i < len; i++) {
-            ScriptVariable svar = lvar[i];
-            if (svar !== null
-                    && svar.getName() !== null
-                    && svar.getName() === name)) {
-                svar.set(value);
-                found = true;
-                break;
-            }
-        }
-        if (!found) {
-            // create a new variable and add to the global array
-            ScriptVariable svar = null;
-            if (value instanceof String
-                    || value instanceof char[]) {
-                svar = new ScriptVariable(name, ScriptConstants.TYPE_L_08_TEXT,
-                        value);
-            } else if (value instanceof String[]
-                    || value instanceof char[][]) {
-                svar = new ScriptVariable(name,
-                        ScriptConstants.TYPE_L_09_TEXT_ARR, value);
-            } else if (value instanceof Float) {
-                svar = new ScriptVariable(name, ScriptConstants.TYPE_L_10_FLOAT,
-                        value);
-            } else if (value instanceof Double) {
-                svar = new ScriptVariable(name, ScriptConstants.TYPE_L_10_FLOAT,
-                        value);
-            } else if (value instanceof float[]) {
-                svar = new ScriptVariable(name,
-                        ScriptConstants.TYPE_L_11_FLOAT_ARR, value);
-            } else if (value instanceof Integer) {
-                svar = new ScriptVariable(name, ScriptConstants.TYPE_L_12_INT,
-                        value);
-            } else if (value instanceof int[]) {
-                svar = new ScriptVariable(name,
-                        ScriptConstants.TYPE_L_13_INT_ARR, value);
-            } else if (value instanceof Long) {
-                svar = new ScriptVariable(name, ScriptConstants.TYPE_L_14_LONG,
-                        value);
-            } else if (value instanceof long[]) {
-                svar = new ScriptVariable(name,
-                        ScriptConstants.TYPE_L_15_LONG_ARR, value);
-            } else {
-                PooledStringBuilder sb =
-                        StringBuilderPool.getInstance().getStringBuilder();
-                try {
-                    sb.append("Local variable ");
-                    sb.append(name);
-                    sb.append(" was passed new value of type ");
-                    sb.append(value.getClass().getCanonicalName());
-                    sb.append(". Only String, Float, float[], Integer, int[],");
-                    sb.append(" Long, or long[] allowed.");
-                } catch (PooledException e) {
-                    throw new RPGException(ErrorMessage.INTERNAL_ERROR, e);
-                }
-                RPGException ex = new RPGException(ErrorMessage.INVALID_PARAM,
-                        sb.toString());
-                sb.returnToPool();
-                sb = null;
-                throw ex;
-            }
-            lvar = ArrayUtilities.getInstance().extendArray(svar, lvar);
-        }
-    }
-    /**
      * Sets the master script.
      * @param script the script to set
      */
-    this.setMaster = function(final Scriptable<IO> script) {
+    this.setMaster = function(script) {
         master = script;
     }
-    this.setTarget = function(final TargetParameters params)
-            {
+    this.setTarget = function(params) {
         if (io.hasIOFlag(IoGlobals.IO_03_NPC)) {
             io.getNPCData().getPathfinding()
-                    .removeFlag(ScriptConstants.PATHFIND_ALWAYS);
+                    .removeFlag(ScriptGlobals.PATHFIND_ALWAYS);
             io.getNPCData().getPathfinding()
-                    .removeFlag(ScriptConstants.PATHFIND_ONCE);
+                    .removeFlag(ScriptGlobals.PATHFIND_ONCE);
             io.getNPCData().getPathfinding()
-                    .removeFlag(ScriptConstants.PATHFIND_NO_UPDATE);
-            if (params.hasFlag(ScriptConstants.PATHFIND_ALWAYS)) {
+                    .removeFlag(ScriptGlobals.PATHFIND_NO_UPDATE);
+            if (params.hasFlag(ScriptGlobals.PATHFIND_ALWAYS)) {
                 io.getNPCData().getPathfinding()
-                        .addFlag(ScriptConstants.PATHFIND_ALWAYS);
+                        .addFlag(ScriptGlobals.PATHFIND_ALWAYS);
             }
-            if (params.hasFlag(ScriptConstants.PATHFIND_ONCE)) {
+            if (params.hasFlag(ScriptGlobals.PATHFIND_ONCE)) {
                 io.getNPCData().getPathfinding()
-                        .addFlag(ScriptConstants.PATHFIND_ONCE);
+                        .addFlag(ScriptGlobals.PATHFIND_ONCE);
             }
-            if (params.hasFlag(ScriptConstants.PATHFIND_NO_UPDATE)) {
+            if (params.hasFlag(ScriptGlobals.PATHFIND_NO_UPDATE)) {
                 io.getNPCData().getPathfinding()
-                        .addFlag(ScriptConstants.PATHFIND_NO_UPDATE);
+                        .addFlag(ScriptGlobals.PATHFIND_NO_UPDATE);
             }
-            int old_target = -12;
+            var old_target = -12;
             if (io.getNPCData().hasReachedtarget()) {
                 old_target = io.getTargetinfo();
             }
@@ -947,7 +924,7 @@ function Scriptable(ioInstance) {
                             .hasBehavior(Behaviour.BEHAVIOUR_WANDER_AROUND)) {
                 old_target = -12;
             }
-            int t = params.getTargetInfo();
+            var t = params.getTargetInfo();
 
             if (t === -2) {
                 t = Interactive.getInstance().GetInterNum(io);
@@ -958,11 +935,11 @@ function Scriptable(ioInstance) {
             // cam->translatetarget.y = 0.f;
             // cam->translatetarget.z = 0.f;
             // }
-            if (t === ScriptConstants.TARGET_PATH) {
+            if (t === ScriptGlobals.TARGET_PATH) {
                 io.setTargetinfo(t); // TARGET_PATH;
                 getTargetPos(io, 0);
-            } else if (t === ScriptConstants.TARGET_NONE) {
-                io.setTargetinfo(ScriptConstants.TARGET_NONE);
+            } else if (t === ScriptGlobals.TARGET_NONE) {
+                io.setTargetinfo(ScriptGlobals.TARGET_NONE);
             } else {
                 if (Interactive.getInstance().hasIO(t)) {
                     io.setTargetinfo(t); // TARGET_PATH;
@@ -987,16 +964,16 @@ function Scriptable(ioInstance) {
         timers[index] = refId;
     }
     this.onOtherReflection = function() {
-        return ScriptConstants.ACCEPT;
+        return ScriptGlobals.ACCEPT;
     }
     this.onMiscReflection = function() {
-        return ScriptConstants.ACCEPT;
+        return ScriptGlobals.ACCEPT;
     }
     this.onPathfinderFailure = function() {
-        return ScriptConstants.ACCEPT;
+        return ScriptGlobals.ACCEPT;
     }
     this.onSpellEnd = function() {
-        return ScriptConstants.ACCEPT;
+        return ScriptGlobals.ACCEPT;
     }
 }
 Scriptable.prototype = Object.create(Hashcode.prototype);

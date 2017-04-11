@@ -231,6 +231,13 @@ function InventoryData() {
     this.getIo = function() {
         return io;
     }
+	/**
+	 * Gets the number of inventory slots.
+	 * @return <code>int</code>
+	 */
+    this.getNumInventorySlots = function() {
+		return slots.length;
+	}
     /**
      * Gets the inventory slot at the specific index.
      * @param index the slot index

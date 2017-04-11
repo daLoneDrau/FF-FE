@@ -344,10 +344,7 @@ function Interactive() {
                     var inventoryData;
                     if (invIo.getInventory() !== null) {
                         inventoryData = invIo.getInventory();
-                        for (var j =
-                                inventoryData.getNumInventorySlots()
-                                        - 1;
-                                j >= 0; j--) {
+                        for (var j = inventoryData.getNumInventorySlots() - 1; j >= 0; j--) {
                         	var slot = inventoryData.getSlot(j);
                             if (slot.getIo() !== null
                                     && slot.getIo().equals(itemIO)) {

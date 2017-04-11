@@ -109,13 +109,9 @@ angular.module('restApp').factory('modifierSynchronousService', function($http, 
         xmlhttp.onreadystatechange = function() {
             if (xmlhttp.readyState == XMLHttpRequest.DONE ) {
                if (xmlhttp.status == 200) {
-                   console.log(xmlhttp);
-                   console.log(xmlhttp.responseText);
-               }
-               else if (xmlhttp.status == 400) {
+               } else if (xmlhttp.status == 400) {
             	   console.log('There was an error 400');
-               }
-               else {
+               } else {
             	   console.log('something else other than 200 was returned');
                }
             }
@@ -280,13 +276,9 @@ angular.module('restApp').factory('itemSynchronousService', function($http, $q) 
         xmlhttp.onreadystatechange = function() {
             if (xmlhttp.readyState == XMLHttpRequest.DONE ) {
                if (xmlhttp.status == 200) {
-                   console.log(xmlhttp);
-                   console.log(xmlhttp.responseText);
-               }
-               else if (xmlhttp.status == 400) {
+               } else if (xmlhttp.status == 400) {
             	   console.log('There was an error 400');
-               }
-               else {
+               } else {
             	   console.log('something else other than 200 was returned');
                }
             }

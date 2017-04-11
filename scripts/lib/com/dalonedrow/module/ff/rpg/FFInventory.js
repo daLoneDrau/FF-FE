@@ -1,8 +1,8 @@
 function FFInventory() {
 	InventoryData.call(this);
     var slots = [];
-    for (var i = FFEquipmentSlots.getNumberOfValues() - 1; i >= 0; i--) {
-        slots[i] = new InventorySlot();
+    for (var i = ProjectConstants.getInstance().getNumberInventorySlots() - 1; i >= 0; i--) {
+        slots.push(new InventorySlot());
     }
     this.setSlots(slots);
     this.PutInFrontOfPlayer = function(itemIO, doNotApplyPhysics) {

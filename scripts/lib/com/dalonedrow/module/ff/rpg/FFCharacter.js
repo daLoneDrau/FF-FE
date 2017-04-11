@@ -1,6 +1,5 @@
 function FFCharacter() {
     this.getAttributeMap = function() {
-    	console.log(FFCharacter.attributeMap);
         return FFCharacter.attributeMap;
     }
 	IoPcData.call(this);
@@ -79,9 +78,6 @@ function FFCharacter() {
         return false;
     }
     this.newHero = function() {
-    	var t = Interactive.getInstance().loadItem("IRON SWORD");
-        console.log("after send");
-        console.log(t);
         // roll stats
     	var roll = Dice.properties[Dice.ONE_D6].roll() + 6;
         this.setBaseAttributeScore("SK", roll);
@@ -93,8 +89,8 @@ function FFCharacter() {
         this.setBaseAttributeScore("LK", roll);
         this.setBaseAttributeScore("MLK", roll);
         // equip iron sword
-        FFWebServiceClient.getInstance().loadItem(
-                "IRON SWORD").getItemData().ARX_EQUIPMENT_Equip(getIo());
+        Interactive.getInstance().loadItem("IRON SWORD").getItemData().ARX_EQUIPMENT_Equip(
+        		this.getIo());
         this.computeFullStats();
     }
     /**
