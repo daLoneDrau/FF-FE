@@ -3,15 +3,18 @@
 "use strict";
 
 // scope syntax, not controller-as
-angular.module('restApp').controller('GameController', function($scope, $window,
+angular.module('restApp').controller('GameController', function($scope, $window, $sce,
 		equipmentSlotService, elementService, itemService, itemSynchronousService,
-		modifierSynchronousService,
+		modifierSynchronousService, textService, textSynchronousService,
 		/*basicAttributeService, basicElementService,*/ $q, $http) {
     $scope.newEntity = {
         name: "",
         description: "",
         code: ""
     };
+    $scope.infoChange = function() {
+    	console.log("infoChange");
+    }
     $scope.create = function() {
         console.log($scope.newEntity);
         if ($scope.entities.length > 0) {
@@ -199,7 +202,19 @@ angular.module('restApp').controller('GameController', function($scope, $window,
                 }
             }
         });
-        $q.all([promise1, promise2]).then(function(){
+        var promise3 = textService.getEntityByName("START");
+        promise3.then(function(response) {
+            if (response.status === 200) {
+                var list = response.data;
+                for (var i = list.length - 1; i >= 0; i--) {
+                    if (angular.isUndefined(list[i].id)) {
+                    	list[i].id = 0;
+                    }
+                    $scope.text = list[i].text;
+                }
+            }
+        });
+        $q.all([promise1, promise2, promise3]).then(function(){
             // yes, this only runs after all of the promises fulfilled
             init();
         });
@@ -221,6 +236,7 @@ angular.module('restApp').controller('GameController', function($scope, $window,
         Interactive.setInstance(o);
         Interactive.getInstance().itemSynchronousService = itemSynchronousService;
         Interactive.getInstance().modifierSynchronousService = modifierSynchronousService;
+        Interactive.getInstance().textSynchronousService = textSynchronousService;
         o = new FFScript();
         Script.setInstance(o);
         o = new FFSpeech();

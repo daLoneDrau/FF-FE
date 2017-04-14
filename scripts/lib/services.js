@@ -290,6 +290,60 @@ angular.module('restApp').factory('itemSynchronousService', function($http, $q) 
     return dataFactory;
 });
 
+angular.module('restApp').factory('textService', function($http, $q) {
+    var urlBase = [ httpBase, 'texts' ].join("");
+    var dataFactory = {};
+
+    dataFactory.getEntities = function () {
+        var defer = $q.defer();
+        defer.resolve($http.get(urlBase));
+        return defer.promise;
+    };
+    dataFactory.getEntity = function (id) {
+        return $http.get(urlBase + '/' + id);
+    };
+    dataFactory.getEntityByName = function (name) {
+        return $http.get(urlBase + '/name/' + name);
+    };
+    dataFactory.insertEntity = function (entity) {
+        var defer = $q.defer();
+        defer.resolve($http.post(urlBase, entity));
+        return defer.promise;
+    };
+    dataFactory.updateEntity = function (entity) {
+        var defer = $q.defer();
+        defer.resolve($http.put(urlBase, entity));
+        return defer.promise;
+    };
+    dataFactory.deleteEntity = function (id) {
+        return $http.delete(urlBase + '/' + id);
+    };
+    return dataFactory;
+});
+
+angular.module('restApp').factory('textSynchronousService', function($http, $q) {
+    var urlBase = [ httpBase, 'texts' ].join("");
+    var dataFactory = {};
+    dataFactory.getEntityByName = function (name) {
+    	var u = [urlBase , '/name/', name].join("");
+    	var xmlhttp = new XMLHttpRequest();
+        xmlhttp.onreadystatechange = function() {
+            if (xmlhttp.readyState == XMLHttpRequest.DONE ) {
+               if (xmlhttp.status == 200) {
+               } else if (xmlhttp.status == 400) {
+            	   console.log('There was an error 400');
+               } else {
+            	   console.log('something else other than 200 was returned');
+               }
+            }
+        };
+        xmlhttp.open("GET", u, false);
+        xmlhttp.send();
+        return xmlhttp.responseText;
+    };
+    return dataFactory;
+});
+
 angular.module('restApp').factory('basicNpcService', function($http, $q) {
     var urlBase = [ httpBase, 'io_npc_data' ].join("");
     var dataFactory = {};
